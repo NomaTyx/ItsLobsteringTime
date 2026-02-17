@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Food : MonoBehaviour
 {
     [SerializeField] private float _energyValue = 10f;
 
-    public void onEaten()
+    public void OnEaten()
     {
-        Debug.Log("Food was eaten");
+        GameManager.instance.Player.GetComponent<PlayerEnergy>().GainEnergy(_energyValue);
         Destroy(gameObject);
     }
 }
