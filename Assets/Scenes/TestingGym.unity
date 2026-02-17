@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10352379, y: 0, z: 0, w: 0.994627}
-  m_LocalPosition: {x: 0, y: 3.5070581, z: -9.537169}
+  m_LocalPosition: {x: 0, y: 3.0070581, z: -9.537169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -593,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 534277051}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10352379, y: 0, z: 0, w: 0.994627}
-  m_LocalPosition: {x: 0, y: 3.5070581, z: -9.537169}
+  m_LocalPosition: {x: 0, y: 3.0070581, z: -9.537169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1119,9 +1119,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069129396}
-  - component: {fileID: 2069129403}
   - component: {fileID: 2069129400}
   - component: {fileID: 2069129401}
+  - component: {fileID: 2069129403}
+  - component: {fileID: 2069129402}
   m_Layer: 0
   m_Name: Lobster
   m_TagString: Untagged
@@ -1138,8 +1139,8 @@ Transform:
   m_GameObject: {fileID: 2069129395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1241505081}
@@ -1158,7 +1159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  _gravity: -9.81
   _eatRange: 5
 --- !u!114 &2069129401
 MonoBehaviour:
@@ -1190,14 +1190,14 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!143 &2069129403
-CharacterController:
+--- !u!136 &2069129402
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069129395}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f60f3003e6088284cbf6c158561a627a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1205,16 +1205,41 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.29, z: 0}
+--- !u!54 &2069129403
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069129395}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
