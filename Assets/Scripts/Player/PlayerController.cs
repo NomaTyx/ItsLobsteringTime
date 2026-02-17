@@ -28,13 +28,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
+        //TODO: Implement cooldown????
         foreach (Collider c in Physics.OverlapSphere(transform.position, _eatRange))
         {
             Food food = c.GetComponent<Food>();
 
             if (food == null) continue;
 
-            food.onEaten();
+            food.OnEaten();
+            break;
         }
     }
 
@@ -55,6 +57,5 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = movementDir * _moveSpeed;
 
         transform.LookAt(transform.position + forward);
-        Debug.Log(_rb.linearVelocity.z);
     }
 }
