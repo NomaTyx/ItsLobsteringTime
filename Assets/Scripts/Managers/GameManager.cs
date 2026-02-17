@@ -4,8 +4,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject Player;
-
     private void Awake()
     {
         if(instance != null)
@@ -15,7 +13,6 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-        Player = FindFirstObjectByType<PlayerController>().gameObject;
     }
 
     private void Start()

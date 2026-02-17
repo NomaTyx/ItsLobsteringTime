@@ -4,14 +4,26 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
-
     [SerializeField] private float _eatRange = 5;
+
+    public static PlayerController Instance;
     
     private float _movementX;
     private float _movementZ;
 
 
     private Rigidbody _rb;
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.Log("There already exists a PlayerController instance");
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
