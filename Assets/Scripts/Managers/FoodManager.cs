@@ -23,6 +23,11 @@ public class FoodManager : MonoBehaviour
         _foodInScene = new List<GameObject>();
     }
 
+    private void Start()
+    {
+        SpawnFoodUpToMax();
+    }
+
     public void SpawnFoodUpToMax()
     {
         while (_foodInScene.Count < _maxFoodInScene)
@@ -30,8 +35,10 @@ public class FoodManager : MonoBehaviour
             float spawnPointX = Random.Range(_floorCollider.bounds.min.x, _floorCollider.bounds.max.x);
             float spawnPointZ = Random.Range(_floorCollider.bounds.min.z, _floorCollider.bounds.max.z);
 
-            _foodInScene.Add(Instantiate(_foodPrefabs[Random.Range(0, _foodPrefabs.Length)].gameObject,
-                new Vector3(spawnPointX, 0.25f, spawnPointZ), Quaternion.identity));
+            GameObject foodToInstantiate = _foodPrefabs[Random.Range(0, _foodPrefabs.Length)].gameObject;
+            Vector3 foodInstantiationLocation = new Vector3(spawnPointX, 0.25f, spawnPointZ);
+
+            _foodInScene.Add(Instantiate(foodToInstantiate, foodInstantiationLocation, Quaternion.identity));
         }
 
     }

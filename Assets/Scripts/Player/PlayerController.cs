@@ -40,15 +40,29 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
+        Food closestFood = null;
+        float closestDistance = Mathf.Infinity;
+
         //TODO: Implement cooldown????
         foreach (Collider c in Physics.OverlapSphere(transform.position, _eatRange))
         {
             Food food = c.GetComponent<Food>();
-
+            
             if (food == null) continue;
 
-            food.OnEaten();
-            break;
+            float distanceToFood = Vector3.Distance(transform.position, food.transform.position);
+
+            if (distanceToFood < closestDistance)
+            {
+                closestFood = food;
+                closestDistance = distanceToFood;
+            }
+
+        }
+
+        if (closestFood != null) 
+        {
+            closestFood.OnEaten();
         }
     }
 
