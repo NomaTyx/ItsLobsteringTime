@@ -29,13 +29,11 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         _moltTimerSeconds -= Time.deltaTime;
-        Debug.Log("Being called");
 
         if (_moltTimerSeconds <= 0)
         {
             MoltTimerExpired.Invoke();
             _moltTimerSeconds = _maxMoltTimerSeconds;
-            Debug.Log("invoked");
         }
     }
 }

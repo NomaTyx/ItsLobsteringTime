@@ -46,6 +46,11 @@ public class PlayerEnergy : MonoBehaviour
         Debug.Log("Grew!");
     }
 
+    public void TakeDamage(float damageAmount)
+    {
+        _currentEnergy -= damageAmount;
+    }
+
     private void Die()
     {
         Debug.Log("u ded lole");
