@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         _movement = GetComponent<PlayerMovement>();
+        _claw = GetComponent<Claw>();
     }
 
     public void OnMove(InputValue movementValue)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Claw : MonoBehaviour
 {
     [SerializeField] private float _eatRange = 5;
-    
+
     public virtual void TryAttack()
     {
         AttackTarget closestTarget = null;
@@ -45,6 +45,6 @@ public class Claw : MonoBehaviour
 
     public virtual void Eat(Food food)
     {
-        
+        food.OnEaten();
     }
 }

@@ -1075,7 +1075,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2069129396}
   - component: {fileID: 2069129404}
+  - component: {fileID: 2069129406}
   - component: {fileID: 2069129400}
+  - component: {fileID: 2069129405}
   - component: {fileID: 2069129401}
   - component: {fileID: 2069129403}
   - component: {fileID: 2069129402}
@@ -1114,8 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93800b2acbb202f4eb318a96619c5caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _eatRange: 5
 --- !u!114 &2069129401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,7 +1215,33 @@ MonoBehaviour:
   - 40
   - 60
   - 80
-  _playerGrowthScaleFactor: 0.15
+  _playerGrowthPercent: 0.15
+--- !u!114 &2069129405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069129395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7283a47f22ee481cbaad6fab0587599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Claw
+  _eatRange: 5
+--- !u!114 &2069129406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069129395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fd25ccd91ce421ea15505d1fc2640a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _moveSpeed: 5
 --- !u!1 &2095930266
 GameObject:
   m_ObjectHideFlags: 0
