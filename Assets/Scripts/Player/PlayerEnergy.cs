@@ -1,14 +1,16 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerEnergy : MonoBehaviour
 {
+    public event Action PlayerDied;
+    public int PlayerSize => _currentSize;
+
     [SerializeField] private int _maxEnergy = 100;
     [SerializeField] private float _energyDrainPerSecond = 5;
-    [SerializeField] private float _playerGrowthIntervalSeconds = 100;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
-    [SerializeField] private float _playerGrowthScaleFactor;
-    public int PlayerSize => _currentSize;
+    [SerializeField] private float _playerGrowthPercent = 0.15f;
     private int _currentSize = 0;
 
     private float _currentEnergy;
@@ -17,7 +19,7 @@ public class PlayerEnergy : MonoBehaviour
     {
         _currentEnergy = _maxEnergy;
 
-        GameManager.Instance.MoltTimerExpired += Grow;
+        GameManager.Instance.MoltTimerExpired += TryGrow;
     }
 
     public void GainEnergy(float amount)
@@ -25,17 +27,23 @@ public class PlayerEnergy : MonoBehaviour
         _currentEnergy = Mathf.Min(_currentEnergy + amount, _maxEnergy);
     }
 
-    private void Grow()
+    private void TryGrow()
     {
-        if(_currentEnergy > _playerGrowthEnergyCosts[_currentSize])
+        if(_currentEnergy > _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
         {
-            _currentSize++;
-            transform.localScale = Vector3.one * _playerGrowthScaleFactor * _currentSize;
+            Grow();
         }
         else
         {
             Die();
         }
+    }
+
+    private void Grow()
+    {
+        _currentSize++;
+        transform.localScale = Vector3.one * (1 + _playerGrowthPercent * _currentSize);
+        Debug.Log("Grew!");
     }
 
     private void Die()
@@ -47,7 +55,7 @@ public class PlayerEnergy : MonoBehaviour
     void FixedUpdate()
     {
         //for the love of GOD please remember to change this later
-        Debug.Log($"Current energy: {_currentEnergy}");
+        //Debug.Log($"Current energy: {_currentEnergy}");
         _currentEnergy -= _energyDrainPerSecond * Time.fixedDeltaTime;
     }
 }

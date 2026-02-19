@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907a830b8d4a159448e60e46a145f537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxMoltTimerSeconds: 60
+  _maxMoltTimerSeconds: 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,12 +1210,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxEnergy: 100
   _energyDrainPerSecond: 5
-  _playerGrowthIntervalSeconds: 100
   _playerGrowthEnergyCosts:
   - 30
   - 40
   - 60
   - 80
+  _playerGrowthScaleFactor: 0.15
 --- !u!1 &2095930266
 GameObject:
   m_ObjectHideFlags: 0
