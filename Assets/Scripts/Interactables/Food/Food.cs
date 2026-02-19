@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Food : MonoBehaviour
+public class Food : AttackTarget
 {
     [SerializeField] private float _energyValue = 10f;
 

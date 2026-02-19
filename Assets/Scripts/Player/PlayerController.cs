@@ -3,16 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private float _eatRange = 5;
-
     public static PlayerController Instance;
-    
-    private float _movementX;
-    private float _movementZ;
 
-
-    private Rigidbody _rb;
+    private PlayerMovement _movement;
+    private Claw _claw;
 
     private void Awake()
     {
@@ -23,65 +17,16 @@ public class PlayerController : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
+        _movement = GetComponent<PlayerMovement>();
     }
 
     public void OnMove(InputValue movementValue)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-
-        _movementX = movementVector.x;
-        _movementZ = movementVector.y;
+        _movement.UpdateMoveInput(movementValue.Get<Vector2>());
     }
 
     public void OnAttack()
     {
-        Food closestFood = null;
-        float closestDistance = Mathf.Infinity;
-
-        //TODO: Implement cooldown????
-        foreach (Collider c in Physics.OverlapSphere(transform.position, _eatRange))
-        {
-            Food food = c.GetComponent<Food>();
-            
-            if (food == null) continue;
-
-            float distanceToFood = Vector3.Distance(transform.position, food.transform.position);
-
-            if (distanceToFood < closestDistance)
-            {
-                closestFood = food;
-                closestDistance = distanceToFood;
-            }
-
-        }
-
-        if (closestFood != null) 
-        {
-            closestFood.OnEaten();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 movementDir = forward * _movementZ + right * _movementX;
-
-        //if i do somethign like a knockback effect on the player, i will need some sort of boolean to disable 
-        _rb.linearVelocity = movementDir * _moveSpeed;
-
-        transform.LookAt(transform.position + forward);
+        _claw.TryAttack();
     }
 }
