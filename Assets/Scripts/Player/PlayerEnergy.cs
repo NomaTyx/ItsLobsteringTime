@@ -7,6 +7,9 @@ public class PlayerEnergy : MonoBehaviour
     [SerializeField] private float _energyDrainPerSecond = 5;
     [SerializeField] private float _playerGrowthIntervalSeconds = 100;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
+    [SerializeField] private float _playerGrowthScaleFactor;
+    public int PlayerSize => _currentSize;
+    private int _currentSize = 0;
 
     private float _currentEnergy;
 
@@ -24,12 +27,20 @@ public class PlayerEnergy : MonoBehaviour
 
     private void Grow()
     {
-
+        if(_currentEnergy > _playerGrowthEnergyCosts[_currentSize])
+        {
+            _currentSize++;
+            transform.localScale = Vector3.one * _playerGrowthScaleFactor * _currentSize;
+        }
+        else
+        {
+            Die();
+        }
     }
 
     private void Die()
     {
-
+        Debug.Log("u ded lole");
     }
 
     // Update is called once per frame
