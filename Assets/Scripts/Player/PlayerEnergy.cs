@@ -64,3 +64,11 @@ public class PlayerEnergy : MonoBehaviour
         _currentEnergy -= _energyDrainPerSecond * Time.fixedDeltaTime;
     }
 }
+
+public enum LobsterSize
+{
+    Small = 0,
+    Medium = 1,
+    Large = 2,
+
+}
