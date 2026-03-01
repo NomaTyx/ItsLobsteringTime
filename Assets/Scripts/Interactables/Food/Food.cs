@@ -5,7 +5,7 @@ using UnityEngine;
 public class Food : AttackTarget
 {
     [SerializeField] private float _energyValue = 10f;
-    [SerializeField] private int SizeRequirement = (int) LobsterSize.Small;
+    [SerializeField] private int SizeRequirement = (int) LobsterSizes.Small;
 
     public virtual void OnEaten()
     {

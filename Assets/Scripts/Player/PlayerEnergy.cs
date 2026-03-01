@@ -65,10 +65,28 @@ public class PlayerEnergy : MonoBehaviour
     }
 }
 
-public enum LobsterSize
+public static class LobsterSizesExtension
+{
+    public static LobsterSizes NextSize(LobsterSizes currentSize)
+    {
+        if (currentSize == LobsterSizes.Large)
+        {
+
+        }
+
+        foreach (LobsterSizes size in Enum.GetValues(typeof(LobsterSizes)))
+        {
+            if (size > currentSize)
+            {
+                return size;
+            }
+        }
+        return LobsterSizes.Small;
+    }
+}
+public enum LobsterSizes
 {
     Small = 0,
     Medium = 1,
     Large = 2,
-
 }
