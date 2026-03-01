@@ -56,7 +56,6 @@ public class PlayerEnergy : MonoBehaviour
         Debug.Log("u ded lole");
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         //for the love of GOD please remember to change this later
@@ -65,28 +64,12 @@ public class PlayerEnergy : MonoBehaviour
     }
 }
 
-public static class LobsterSizesExtension
+/// <summary>
+/// This enum exists just to add semantic meaning to certain words so i can avoid using magic numbers.
+/// </summary>
+public enum LobsterSize
 {
-    public static LobsterSizes NextSize(LobsterSizes currentSize)
-    {
-        if (currentSize == LobsterSizes.Large)
-        {
-
-        }
-
-        foreach (LobsterSizes size in Enum.GetValues(typeof(LobsterSizes)))
-        {
-            if (size > currentSize)
-            {
-                return size;
-            }
-        }
-        return LobsterSizes.Small;
-    }
-}
-public enum LobsterSizes
-{
-    Small = 0,
-    Medium = 1,
-    Large = 2,
+    Small,
+    Medium,
+    Large
 }
