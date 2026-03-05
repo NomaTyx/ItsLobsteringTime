@@ -6,9 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    public event Action PlayerDamaged;
-    public event Action PlayerDead;
-
     private PlayerMovement _movement;
     private Claw _claw;
     private PlayerEnergy _energy;

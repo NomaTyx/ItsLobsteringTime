@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerEnergy : MonoBehaviour
 {
-    public event Action PlayerDied;
+    public static PlayerEnergy Instance;
     public int PlayerSize => _currentSize;
+
+    public event Action PlayerDamaged;
+    public event Action PlayerDead;
 
     [SerializeField] private int _maxEnergy = 100;
     [SerializeField] private float _energyDrainPerSecond = 5;
@@ -14,6 +17,17 @@ public class PlayerEnergy : MonoBehaviour
     private int _currentSize = 0;
 
     private float _currentEnergy;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.Log("There already exists a PlayerEnergy instance");
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -49,6 +63,7 @@ public class PlayerEnergy : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         _currentEnergy -= damageAmount;
+        PlayerDamaged.Invoke();
     }
 
     private void Die()
