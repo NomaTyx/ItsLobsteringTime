@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Claw : MonoBehaviour
+public class Claw : Weapon
 {
     [SerializeField] private float _eatRange = 5;
 
     public virtual void TryAttack()
     {
-        //TODO: add separate logic for enemies vs 
+        //TODO: add separate logic for enemies vs food
         Food closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
@@ -26,21 +26,6 @@ public class Claw : MonoBehaviour
             }
         }
 
-        if (closestTarget != null) 
-        {
-            if(closestTarget.GetType() == typeof(Food))
-            {
-                Eat((Food) closestTarget);
-            }
-            /*else if(closestTarget.GetType() == typeof(Enemy)) {
-                Attack((Enemy) closestTarget);
-            }*/
-        }
-        
-    }
-
-    public virtual void Eat(Food food)
-    {
-        food.OnEaten();
+        PlayerEnergy.Instance.Eat(closestTarget);
     }
 }

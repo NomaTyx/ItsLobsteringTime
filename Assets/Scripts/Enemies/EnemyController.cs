@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(Weapon)]
 public class EnemyController : MonoBehaviour
 {
     private IEnumerator _currentState;
@@ -8,6 +9,7 @@ public class EnemyController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //change this later, this is just so that i can check if it works
         ChangeState(AggressiveState());
     }
 
@@ -33,6 +35,5 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Attack!");
             yield return new WaitForSeconds(0.01f);
         }
-        yield return null;
     }
 }

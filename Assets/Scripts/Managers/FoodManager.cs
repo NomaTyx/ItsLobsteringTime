@@ -7,25 +7,20 @@ public class FoodManager : MonoBehaviour
     [SerializeField] private int _maxFoodInScene;
     [SerializeField] private BoxCollider _floorCollider;
 
-    public static FoodManager instance;
+    public static FoodManager Instance { get; private set; }
 
     private List<GameObject> _foodInScene;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.Log("There's already a FoodManager singleton in the scene");
         }
 
-        instance = this;
+        Instance = this;
 
         _foodInScene = new List<GameObject>();
-    }
-
-    private void Start()
-    {
-        SpawnFoodUpToMax();
     }
 
     public void SpawnFoodUpToMax()

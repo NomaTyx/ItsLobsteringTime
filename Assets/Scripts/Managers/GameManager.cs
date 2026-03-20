@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _moltTimerSeconds = _maxMoltTimerSeconds;
+        FoodManager.Instance.SpawnFoodUpToMax();
+
     }
 
     private void FixedUpdate()

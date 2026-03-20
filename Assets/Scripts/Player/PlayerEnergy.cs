@@ -60,6 +60,11 @@ public class PlayerEnergy : MonoBehaviour
         Debug.Log("Grew!");
     }
 
+    public virtual void Eat(Food food)
+    {
+        food.OnEaten();
+    }
+
     public void TakeDamage(float damageAmount)
     {
         _currentEnergy -= damageAmount;
