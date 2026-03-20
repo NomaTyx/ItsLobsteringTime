@@ -6,13 +6,14 @@ public class Claw : MonoBehaviour
 
     public virtual void TryAttack()
     {
-        AttackTarget closestTarget = null;
+        //TODO: add separate logic for enemies vs 
+        Food closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
         //TODO: Implement cooldown????
         foreach (Collider c in Physics.OverlapSphere(transform.position, _eatRange))
         {
-            AttackTarget target = c.GetComponent<AttackTarget>();
+            Food target = c.GetComponent<Food>();
             
             if (target == null) continue;
 
@@ -35,11 +36,6 @@ public class Claw : MonoBehaviour
                 Attack((Enemy) closestTarget);
             }*/
         }
-        
-    }
-
-    public virtual void Attack(AttackTarget target)
-    {
         
     }
 
