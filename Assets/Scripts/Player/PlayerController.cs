@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMovement _movement;
     private Claw _claw;
-    private PlayerEnergy _energy;
+    private PlayerEnergyManager _energy;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         _movement = GetComponent<PlayerMovement>();
         _claw = GetComponent<Claw>();
-        _energy = GetComponent<PlayerEnergy>();
+        _energy = GetComponent<PlayerEnergyManager>();
     }
 
     public void OnMove(InputValue movementValue)
@@ -32,5 +32,10 @@ public class PlayerController : MonoBehaviour
     public void OnAttack()
     {
         _claw.TryAttack();
+    }
+
+    public void OnEat()
+    {
+        PlayerEnergyManager.Instance.Eat();
     }
 }

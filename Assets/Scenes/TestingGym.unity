@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 1855206001}
   - component: {fileID: 1855206000}
   - component: {fileID: 1855205999}
+  - component: {fileID: 1855206004}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1158,6 +1159,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855206004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855205998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e9073bb909052479972c5d975e30e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
 --- !u!1 &1893869465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1354,7 @@ MonoBehaviour:
   - 60
   - 80
   _playerGrowthPercent: 0.15
+  _eatRange: 5
 --- !u!114 &2069129405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,7 +1367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7283a47f22ee481cbaad6fab0587599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Claw
-  _eatRange: 5
 --- !u!114 &2069129406
 MonoBehaviour:
   m_ObjectHideFlags: 0

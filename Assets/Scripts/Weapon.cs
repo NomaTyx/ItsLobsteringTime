@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void TryAttack()
     {
-        
+        Debug.Log("Tried attack with undefined weapon.");
+        Attack(null);
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Attack(IAttackable target)
     {
-        
+        Debug.Log("Attacked with undefined weapon.");
     }
 }

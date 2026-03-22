@@ -2,9 +2,9 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerEnergy : MonoBehaviour
+public class PlayerEnergyManager : MonoBehaviour, IAttackable
 {
-    public static PlayerEnergy Instance;
+    public static PlayerEnergyManager Instance;
     public int PlayerSize => _currentSize;
 
     public event Action PlayerDamaged;
@@ -14,6 +14,8 @@ public class PlayerEnergy : MonoBehaviour
     [SerializeField] private float _energyDrainPerSecond = 5;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
     [SerializeField] private float _playerGrowthPercent = 0.15f;
+    [SerializeField] private float _eatRange = 5;
+
     private int _currentSize = 0;
 
     private float _currentEnergy;
@@ -60,12 +62,32 @@ public class PlayerEnergy : MonoBehaviour
         Debug.Log("Grew!");
     }
 
-    public virtual void Eat(Food food)
+    public virtual void Eat()
     {
-        food.OnEaten();
+        //TODO: add separate logic for enemies vs food
+        Food closestFood = null;
+        float smallestDistance = Mathf.Infinity;
+
+        //TODO: Implement cooldown????
+        foreach (Collider c in Physics.OverlapSphere(transform.position, _eatRange))
+        {
+            Food target = c.GetComponent<Food>();
+
+            if (target == null) continue;
+
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distanceToTarget < smallestDistance)
+            {
+                closestFood = target;
+                smallestDistance = distanceToTarget;
+            }
+        }
+
+        closestFood?.OnEaten();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void Damage(float damageAmount)
     {
         _currentEnergy -= damageAmount;
         PlayerDamaged.Invoke();

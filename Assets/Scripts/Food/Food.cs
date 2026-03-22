@@ -9,7 +9,7 @@ public class Food : MonoBehaviour
 
     public virtual void OnEaten()
     {
-        PlayerController.Instance.GetComponent<PlayerEnergy>().GainEnergy(_energyValue);
+        PlayerController.Instance.GetComponent<PlayerEnergyManager>().GainEnergy(_energyValue);
         Destroy(gameObject);
     }
 }
