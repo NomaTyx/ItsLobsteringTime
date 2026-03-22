@@ -58,12 +58,12 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
     {
         _currentSize++;
         transform.localScale = Vector3.one * (1 + _playerGrowthPercent * _currentSize);
+        _currentEnergy -= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)];
         Debug.Log("Grew!");
     }
 
     public virtual void Eat()
     {
-        //TODO: add separate logic for enemies vs food
         Food closestFood = null;
         float smallestDistance = Mathf.Infinity;
 
@@ -83,7 +83,10 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
             }
         }
 
-        closestFood?.OnEaten();
+        if (closestFood == null) return;
+
+        GainEnergy(closestFood.EnergyValue);
+        closestFood.OnEaten();
     }
 
     public void Damage(float damageAmount)

@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Weapon))]
 public class EnemyController : MonoBehaviour
 {
     private IEnumerator _currentState;
