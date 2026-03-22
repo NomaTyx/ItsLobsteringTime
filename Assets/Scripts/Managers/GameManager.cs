@@ -4,9 +4,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public event Action MoltTimerExpired;
 
-    [SerializeField] private float _maxMoltTimerSeconds = 1f;
+    [SerializeField] private float _maxMoltTimerSeconds = 60f;
 
     private float _moltTimerSeconds;
 
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
     {
         _moltTimerSeconds = _maxMoltTimerSeconds;
         FoodManager.Instance.SpawnFoodUpToMax();
-
     }
 
     private void FixedUpdate()
@@ -34,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         if (_moltTimerSeconds <= 0)
         {
-            MoltTimerExpired.Invoke();
+            PlayerEnergyManager.Instance.TryGrow();
             _moltTimerSeconds = _maxMoltTimerSeconds;
         }
     }

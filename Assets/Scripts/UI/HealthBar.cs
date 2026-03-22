@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
 public class HealthBar : MonoBehaviour
 {
-    private Image _healthBarImage;
+    [SerializeField] private Image _healthBarImage;
+    [SerializeField] private Image _energyUIIndicator;
 
-    private void Start()
+    private void Update()
     {
-        _healthBarImage = GetComponent<Image>();
+        _healthBarImage.fillAmount = PlayerEnergyManager.Instance.Energy / PlayerEnergyManager.Instance.MaxEnergy;
     }
 }

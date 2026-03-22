@@ -6,6 +6,8 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
 {
     public static PlayerEnergyManager Instance;
     public int PlayerSize => _currentSize;
+    public float Energy => _currentEnergy;
+    public float MaxEnergy => _maxEnergy;
 
     public event Action PlayerDamaged;
     public event Action PlayerDead;
@@ -17,7 +19,6 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
     [SerializeField] private float _eatRange = 5;
 
     private int _currentSize = 0;
-
     private float _currentEnergy;
 
     private void Awake()
@@ -34,8 +35,6 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
     private void Start()
     {
         _currentEnergy = _maxEnergy;
-
-        GameManager.Instance.MoltTimerExpired += TryGrow;
     }
 
     public void GainEnergy(float amount)
@@ -43,7 +42,7 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
         _currentEnergy = Mathf.Min(_currentEnergy + amount, _maxEnergy);
     }
 
-    private void TryGrow()
+    public void TryGrow()
     {
         if(_currentEnergy > _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
         {
