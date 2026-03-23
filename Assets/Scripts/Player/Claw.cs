@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class Claw : Weapon
 {
+    [SerializeField] float _attackCooldownSeconds = 0.5f;
+    [SerializeField] float _attackRange = 2f;
+
     /// <summary>
     /// Tries to attack which entails looking through its range to find a target
     /// </summary>
     public override void TryAttack()
     {
-        
+        foreach (Collider c in Physics.OverlapSphere(transform.position, _attackRange)) 
+        {
+
+        }
     }
 
     /// <summary>

@@ -1169,7 +1169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5ced793883eff9439dfb6d7848aead2, type: 2}
+  - {fileID: 2100000, guid: fa542ab47cc7bb3418c35926f8cab963, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1418,6 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5c8656dc6de404db597c22b6138abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  _target: {fileID: 0}
 --- !u!65 &1855206000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1538,6 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93800b2acbb202f4eb318a96619c5caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
 --- !u!114 &2069129401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,6 +1653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7283a47f22ee481cbaad6fab0587599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Claw
+  _attackCooldownSeconds: 0.5
+  _attackRange: 5
 --- !u!114 &2069129406
 MonoBehaviour:
   m_ObjectHideFlags: 0
