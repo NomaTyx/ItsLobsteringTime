@@ -31,8 +31,9 @@ public class EnemyController : MonoBehaviour
     {
         while(true)
         {
+            transform.LookAt(PlayerController.Instance.gameObject.transform);
             Debug.Log("Attack!");
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
