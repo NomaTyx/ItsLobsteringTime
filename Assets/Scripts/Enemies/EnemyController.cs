@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Controller
 {
+    
     private IEnumerator _currentState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
