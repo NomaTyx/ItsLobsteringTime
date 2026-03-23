@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMovement _movement;
     private Claw _claw;
-    private PlayerEnergyManager _energy;
 
     private void Awake()
     {
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         _movement = GetComponent<PlayerMovement>();
         _claw = GetComponent<Claw>();
-        _energy = GetComponent<PlayerEnergyManager>();
     }
 
     public void OnMove(InputValue movementValue)
