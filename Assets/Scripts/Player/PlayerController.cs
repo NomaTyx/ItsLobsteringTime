@@ -6,7 +6,6 @@ public class PlayerController : Controller
 {
     public static PlayerController Instance;
 
-    //private PlayerMovement _movement;
     private CharacterMovement _movement;
     private Claw _claw;
 

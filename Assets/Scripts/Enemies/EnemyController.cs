@@ -33,7 +33,7 @@ public class EnemyController : Controller
         while(true)
         {
             transform.LookAt(PlayerController.Instance.gameObject.transform);
-            Debug.Log("Attack!");
+            //Debug.Log("Attack!");
             yield return new WaitForSeconds(0.5f);
         }
     }
