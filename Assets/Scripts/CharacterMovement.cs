@@ -124,13 +124,13 @@ public class CharacterMovement : MonoBehaviour
         }
 
         input = Vector3.ClampMagnitude(input, 1f);
-        // set input to 0 if small incoming value
-        HasMoveInput = input.magnitude > 0.1f;
-        input = HasMoveInput ? input : Vector3.zero;
-        // remove y component of movement but retain overall magnitude
+
+        input = input.magnitude > 0.1f ? input : Vector3.zero;
+
         Vector3 flattened = new Vector3(input.x, 0f, input.z);
         flattened = flattened.normalized * input.magnitude;
         MoveInput = flattened;
+
         // finds movement input as local direction rather than world direction
         LocalMoveInput = transform.InverseTransformDirection(MoveInput);
     }
@@ -176,24 +176,7 @@ public class CharacterMovement : MonoBehaviour
         // overrides current input with pathing direction if MoveTo has been called
         if (NavMeshAgent.hasPath && NavMeshAgent.pathStatus != NavMeshPathStatus.PathInvalid && NavMeshAgent.path.corners.Length >= 2)
         {
-            Vector3 nextPathPoint = NavMeshAgent.steeringTarget;
-            Vector3 lastPathPoint = NavMeshAgent.path.corners[NavMeshAgent.path.corners.Length - 1];
-            float nextPointDistance = Vector3.Distance(nextPathPoint, transform.position);
-            if (nextPointDistance < StoppingDistance) NavMeshAgent.SetDestination(NavMeshAgent.destination);
-            float lastPointDistance = Vector3.Distance(lastPathPoint, transform.position);
-            bool pathEndReached = lastPointDistance < StoppingDistance;
-            Vector3 pathDir = (nextPathPoint - transform.position).normalized;
-
-            SetMoveInput(pathDir);
-            if (LookInMoveDirection) SetLookDirection(pathDir);
-
-            bool destinationReached = Vector3.Distance(NavMeshAgent.destination, transform.position) < StoppingDistance;
-            // stop off destination reached
-            if (pathEndReached || (StoppingDistance > 0f && destinationReached))
-            {
-                SetLookPosition(NavMeshAgent.destination);
-                Stop();
-            }
+            OverwriteInputWithMoveTo();
         }
 
         // syncs navmeshagent position with character position
@@ -210,46 +193,27 @@ public class CharacterMovement : MonoBehaviour
         // move character along spline
         if (EnableSplineConstraint && SplineContainer != null)
         {
-            // spline closest point and tangent
-            Spline spline = SplineContainer.Spline;
-            Vector3 splineRelativePosition = SplineContainer.transform.InverseTransformPoint(transform.position);
-            SplineUtility.GetNearestPoint(spline, splineRelativePosition, out float3 nearest, out float t);
-            Vector3 splineWorldPosition = SplineContainer.transform.TransformPoint(nearest);
-            Vector3 splineTangent = SplineUtility.EvaluateTangent(spline, t);
-            splineTangent.y = 0f;
-            splineTangent.Normalize();
-
-            // float direction to closest point
-            Vector3 dirToSplineCenter = splineWorldPosition - transform.position;
-            dirToSplineCenter.y = 0f;
-            float splineFlatDistance = dirToSplineCenter.magnitude;
-            dirToSplineCenter.Normalize();
-
-            // force bringing character back to spline center
-            float gravitationDot = Vector3.Dot(splineTangent, dirToSplineCenter);
-            float gravitationCorrection = 1f - Math.Abs(gravitationDot);
-            float sideInput = Vector3.Dot(MoveInput, splineTangent);
-            Rigidbody.AddForce(gravitationCorrection * Mathf.Clamp01(splineFlatDistance) * SplineGravitation * dirToSplineCenter);
-
-            // correct movement direction along spline
-            forward = MoveInput.magnitude * sideInput * splineTangent;
-            SplineLookDirection = splineTangent * Mathf.Sign(sideInput);
+            forward = MoveAlongSpline();
         }
 
         float speed = Speed;
+
         // calculates desirection movement velocity
         Vector3 targetVelocity = forward * (speed * MoveSpeedMultiplier);
         if (!CanMove) targetVelocity = Vector3.zero;
+
         // adds velocity of surface under character, if character is stationary
         targetVelocity += SurfaceVelocity * (1f - Mathf.Abs(MoveInput.magnitude));
+
         // calculates acceleration required to reach desired velocity and applies air control if not grounded
         Vector3 velocityDiff = targetVelocity - Velocity;
         velocityDiff.y = 0f;
         float control = IsGrounded ? 1f : AirControl;
         Vector3 acceleration = velocityDiff * (Acceleration * control);
+
         // zeros acceleration if airborne and not trying to move (allows for nice jumping arcs)
         if (!IsGrounded && !HasMoveInput) acceleration = Vector3.zero;
-        // add gravity
+
         acceleration += GroundNormal * Gravity;
 
         Rigidbody.AddForce(acceleration * Rigidbody.mass);
@@ -359,5 +323,55 @@ public class CharacterMovement : MonoBehaviour
         Ray stepRay = new Ray(stepHeightPosition, -transform.up);
         float distance = StepHeight - StepHeightAllowance;
         Gizmos.DrawRay(stepRay.origin, stepRay.direction * distance);
+    }
+
+    private void OverwriteInputWithMoveTo()
+    {
+        Vector3 nextPathPoint = NavMeshAgent.steeringTarget;
+        Vector3 lastPathPoint = NavMeshAgent.path.corners[NavMeshAgent.path.corners.Length - 1];
+        float nextPointDistance = Vector3.Distance(nextPathPoint, transform.position);
+        if (nextPointDistance < StoppingDistance) NavMeshAgent.SetDestination(NavMeshAgent.destination);
+        float lastPointDistance = Vector3.Distance(lastPathPoint, transform.position);
+        bool pathEndReached = lastPointDistance < StoppingDistance;
+        Vector3 pathDir = (nextPathPoint - transform.position).normalized;
+
+        SetMoveInput(pathDir);
+        if (LookInMoveDirection) SetLookDirection(pathDir);
+
+        bool destinationReached = Vector3.Distance(NavMeshAgent.destination, transform.position) < StoppingDistance;
+        // stop off destination reached
+        if (pathEndReached || (StoppingDistance > 0f && destinationReached))
+        {
+            SetLookPosition(NavMeshAgent.destination);
+            Stop();
+        }
+    }
+
+    private Vector3 MoveAlongSpline()
+    {
+        // spline closest point and tangent
+        Spline spline = SplineContainer.Spline;
+        Vector3 splineRelativePosition = SplineContainer.transform.InverseTransformPoint(transform.position);
+        SplineUtility.GetNearestPoint(spline, splineRelativePosition, out float3 nearest, out float t);
+        Vector3 splineWorldPosition = SplineContainer.transform.TransformPoint(nearest);
+        Vector3 splineTangent = SplineUtility.EvaluateTangent(spline, t);
+        splineTangent.y = 0f;
+        splineTangent.Normalize();
+
+        // float direction to closest point
+        Vector3 dirToSplineCenter = splineWorldPosition - transform.position;
+        dirToSplineCenter.y = 0f;
+        float splineFlatDistance = dirToSplineCenter.magnitude;
+        dirToSplineCenter.Normalize();
+
+        // force bringing character back to spline center
+        float gravitationDot = Vector3.Dot(splineTangent, dirToSplineCenter);
+        float gravitationCorrection = 1f - Math.Abs(gravitationDot);
+        float sideInput = Vector3.Dot(MoveInput, splineTangent);
+        Rigidbody.AddForce(gravitationCorrection * Mathf.Clamp01(splineFlatDistance) * SplineGravitation * dirToSplineCenter);
+
+        // correct movement direction along spline
+        SplineLookDirection = splineTangent * Mathf.Sign(sideInput);
+        return MoveInput.magnitude * sideInput * splineTangent;
     }
 }
