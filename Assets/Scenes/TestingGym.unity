@@ -164,6 +164,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxMoltTimerSeconds: 1
+--- !u!114 &268622288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3497320019145587868, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
+  m_PrefabInstance: {fileID: 1035128715835538730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aac16ea2d5e97840947eeab5d221c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WanderingEnemy
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1260,57 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0b47034961433c348ad6b613360357b6, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1658956037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658956038}
+  - component: {fileID: 1658956039}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658956038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658956037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1705837061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658956039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658956037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8613e5dea1d4e941b1d2c4ba970688d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
+  _wanderingEnemyPrefabs:
+  - {fileID: 268622288}
+  _maxEnemiesInScene: 5
+  _spawnPointXMinBound: -50
+  _spawnPointXMaxBound: 50
+  _spawnPointZMinBound: -50
+  _spawnPointZMaxBound: 50
 --- !u!1 &1679100291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1391,7 @@ Transform:
   - {fileID: 256092633}
   - {fileID: 1679100292}
   - {fileID: 832575519}
+  - {fileID: 1658956038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893869465
