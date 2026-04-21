@@ -36,4 +36,10 @@ public class FoodManager : MonoBehaviour
         }
 
     }
+
+    //temporary, i should probably do an event pattern but hey man what are you gonna do
+    public bool RemoveFoodFromList(GameObject foodToRemove)
+    {
+        return FoodInScene.Remove(foodToRemove);
+    }
 }

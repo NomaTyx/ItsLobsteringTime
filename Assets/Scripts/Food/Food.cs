@@ -11,6 +11,7 @@ public class Food : MonoBehaviour
 
     public virtual void OnEaten()
     {
+        FoodManager.Instance.RemoveFoodFromList(gameObject);
         Destroy(gameObject);
     }
 }
