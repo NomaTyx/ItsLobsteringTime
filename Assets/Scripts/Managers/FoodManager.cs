@@ -9,7 +9,8 @@ public class FoodManager : MonoBehaviour
 
     public static FoodManager Instance { get; private set; }
 
-    public List<GameObject> FoodInScene { get; private set; }
+    public List<GameObject> FoodInScene { get; private set; } = new List<GameObject>();
+
 
     private void Awake()
     {
@@ -19,8 +20,6 @@ public class FoodManager : MonoBehaviour
         }
 
         Instance = this;
-
-        FoodInScene = new List<GameObject>();
     }
 
     public void SpawnFoodUpToMax()
