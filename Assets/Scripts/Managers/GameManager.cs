@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("There already exists a GameManager singleton!");
             return;
         }
-
         Instance = this;
     }
 
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         _moltTimerSeconds = _maxMoltTimerSeconds;
         FoodManager.Instance.SpawnFoodUpToMax();
+        EnemyManager.Instance.SpawnWanderingEnemies();
     }
 
     private void FixedUpdate()

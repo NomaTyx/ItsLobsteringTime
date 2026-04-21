@@ -9,10 +9,8 @@ public class WanderingEnemy : EnemyController
     {
         while (true) 
         {
-            Debug.Log("override is being called");
             if (destinationFood == null)
             {
-                Debug.Log("null");
                 try
                 {
                     destinationFood = FindClosestFood();
@@ -21,6 +19,10 @@ public class WanderingEnemy : EnemyController
                 {
                     Debug.Log("food is null");
                 }
+            }
+            else
+            {
+                _movement.MoveTo(destinationFood.transform.position);
             }
 
             yield return null;

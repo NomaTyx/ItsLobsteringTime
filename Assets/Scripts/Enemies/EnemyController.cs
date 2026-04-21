@@ -4,9 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMovement))]
 public abstract class EnemyController : Controller
 {
+    protected CharacterMovement _movement;
     private IEnumerator _currentState;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+        _movement = GetComponent<CharacterMovement>();
+    }
+
+  // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //change this later, this is just so that i can check if it works
