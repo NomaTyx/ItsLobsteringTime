@@ -13,4 +13,9 @@ public class TerritorialEnemy : EnemyController
     {
         
     }
+
+  protected override void Init()
+  {
+    throw new System.NotImplementedException();
+  }
 }

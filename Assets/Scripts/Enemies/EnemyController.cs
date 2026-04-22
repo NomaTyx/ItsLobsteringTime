@@ -7,12 +7,14 @@ public abstract class EnemyController : Controller
     protected CharacterMovement _movement;
     private IEnumerator _currentState;
 
-    void Awake()
+    protected void Awake()
     {
         _movement = GetComponent<CharacterMovement>();
+        Init();
     }
 
-  // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected abstract void Init();
+
     void Start()
     {
         //change this later, this is just so that i can check if it works

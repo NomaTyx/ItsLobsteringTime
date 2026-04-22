@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WanderingEnemy : EnemyController
@@ -10,7 +11,7 @@ public class WanderingEnemy : EnemyController
 
     private SphereCollider _playerDetection;
 
-    private void Awake()
+    protected override void Init()
     {
         _playerDetection = GetComponent<SphereCollider>();
         _playerDetection.radius = _playerDetectionRadius;
