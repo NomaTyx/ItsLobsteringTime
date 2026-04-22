@@ -174,11 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aac16ea2d5e97840947eeab5d221c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WanderingEnemy
---- !u!4 &268622293 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8721719230196981960, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
-  m_PrefabInstance: {fileID: 1035128715835538730}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1954,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 392612651}
-  - {fileID: 268622293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1996,7 +1990,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2095930267}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1981920065873151781, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
       propertyPath: m_Name
@@ -2004,11 +1998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721719230196981960, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -943.6738
+      value: -503.42383
       objectReference: {fileID: 0}
     - target: {fileID: 8721719230196981960, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -539.9954
+      value: -340.74542
       objectReference: {fileID: 0}
     - target: {fileID: 8721719230196981960, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2115,3 +2109,4 @@ SceneRoots:
   - {fileID: 1022826488}
   - {fileID: 4305833960610923982}
   - {fileID: 2095930267}
+  - {fileID: 1035128715835538730}
