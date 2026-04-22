@@ -795,7 +795,7 @@ MonoBehaviour:
   VerticalAxis:
     Value: 17.5
     Center: 17.5
-    Range: {x: -10, y: 45}
+    Range: {x: 1.5, y: 45}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -1436,13 +1436,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2069129396}
   - component: {fileID: 2069129404}
-  - component: {fileID: 2069129406}
   - component: {fileID: 2069129400}
   - component: {fileID: 2069129405}
+  - component: {fileID: 2069129407}
   - component: {fileID: 2069129401}
   - component: {fileID: 2069129403}
   - component: {fileID: 2069129408}
-  - component: {fileID: 2069129407}
   - component: {fileID: 2069129409}
   m_Layer: 0
   m_Name: Lobster
@@ -1558,6 +1557,8 @@ MonoBehaviour:
   - 80
   _playerGrowthPercent: 0.15
   _eatRange: 5
+  _currentSize: 0
+  _currentEnergy: 0
 --- !u!114 &2069129405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,19 +1573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Claw
   _attackCooldownSeconds: 0.5
   _attackRange: 5
---- !u!114 &2069129406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069129395}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fd25ccd91ce421ea15505d1fc2640a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _moveSpeed: 5
 --- !u!114 &2069129407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement3D
   <Speed>k__BackingField: 5
-  <Acceleration>k__BackingField: 10
+  <Acceleration>k__BackingField: 30
   <TurnSpeed>k__BackingField: 15
   <OnlyTurnWithInput>k__BackingField: 1
   <StoppingDistance>k__BackingField: 0.25

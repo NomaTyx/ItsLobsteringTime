@@ -37,11 +37,7 @@ public abstract class EnemyController : Controller
 
     protected virtual IEnumerator AggressiveState()
     {
-        while(true)
-        {
-            transform.LookAt(PlayerController.Instance.gameObject.transform);
-            //Debug.Log("Attack!");
-            yield return new WaitForSeconds(0.5f);
-        }
+        Debug.Log("Base attack");
+        yield return null;
     }
 }
