@@ -5,7 +5,7 @@ using UnityEngine;
 public class WanderingEnemy : EnemyController
 {
     Food destinationFood = null;
-    protected override IEnumerator PatrolState()
+    protected override IEnumerator SearchingState()
     {
         while (true) 
         {

@@ -16,7 +16,7 @@ public abstract class EnemyController : Controller
     void Start()
     {
         //change this later, this is just so that i can check if it works
-        ChangeState(PatrolState());
+        ChangeState(SearchingState());
     }
 
     private void ChangeState(IEnumerator newState)
@@ -29,15 +29,21 @@ public abstract class EnemyController : Controller
         StartCoroutine(_currentState);
     }
 
-    protected virtual IEnumerator PatrolState()
+    protected virtual IEnumerator SearchingState()
     {
-        Debug.Log("hell on earth");
+        Debug.Log("base searching state");
         yield return null;
     }
 
-    protected virtual IEnumerator AggressiveState()
+    protected virtual IEnumerator CombatState()
     {
         Debug.Log("Base attack");
+        yield return null;
+    }
+
+    protected virtual IEnumerator EatingState()
+    {
+        Debug.Log("Base eat");
         yield return null;
     }
 }
