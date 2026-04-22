@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         if (_moltTimerSeconds <= 0)
         {
-            PlayerEnergyManager.Instance.TryGrow();
+            PlayerEnergy.Instance.TryGrow();
             _moltTimerSeconds = _maxMoltTimerSeconds;
         }
     }

@@ -8,6 +8,6 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        _healthBarImage.fillAmount = PlayerEnergyManager.Instance.Energy / PlayerEnergyManager.Instance.MaxEnergy;
+        _healthBarImage.fillAmount = PlayerEnergy.Instance.Energy / PlayerEnergy.Instance.MaxEnergy;
     }
 }

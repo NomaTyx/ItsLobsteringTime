@@ -2,9 +2,9 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerEnergyManager : MonoBehaviour, IAttackable
+public class PlayerEnergy : MonoBehaviour, IAttackable
 {
-    public static PlayerEnergyManager Instance;
+    public static PlayerEnergy Instance;
     public int PlayerSize => _currentSize;
     public float Energy => _currentEnergy;
     public float MaxEnergy => _maxEnergy;
@@ -13,7 +13,7 @@ public class PlayerEnergyManager : MonoBehaviour, IAttackable
     public event Action PlayerDead;
 
     [SerializeField] private int _maxEnergy = 100;
-    [SerializeField] private float _energyDrainPerSecond = 5;
+    [SerializeField] private float _energyDrainPerSecond = 1;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
     [SerializeField] private float _playerGrowthPercent = 0.15f;
     [SerializeField] private float _eatRange = 5;

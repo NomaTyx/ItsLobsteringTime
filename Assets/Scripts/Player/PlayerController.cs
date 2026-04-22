@@ -37,7 +37,7 @@ public class PlayerController : Controller
 
     public void OnEat()
     {
-        PlayerEnergyManager.Instance.Eat();
+        PlayerEnergy.Instance.Eat();
     }
 
     protected virtual void Update()
