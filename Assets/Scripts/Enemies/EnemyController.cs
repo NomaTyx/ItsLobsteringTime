@@ -19,7 +19,7 @@ public abstract class EnemyController : Controller
         ChangeState(SearchingState());
     }
 
-    private void ChangeState(IEnumerator newState)
+    protected void ChangeState(IEnumerator newState)
     {
         // stop current state
         if (_currentState != null) StopCoroutine(_currentState);

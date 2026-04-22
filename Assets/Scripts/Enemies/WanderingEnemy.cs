@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class WanderingEnemy : EnemyController
 {
-    Food destinationFood = null;
+    [SerializeField] private float _playerDetectionRadius = 10;
+
+    private Food _destinationFood = null;
+
+    private SphereCollider _playerDetection;
+
+    private void Awake()
+    {
+        _playerDetection = GetComponent<SphereCollider>();
+        _playerDetection.radius = _playerDetectionRadius;
+    }
+
     protected override IEnumerator SearchingState()
     {
         while (true) 
         {
-            if (destinationFood == null)
+            if (_destinationFood == null)
             {
                 try
                 {
-                    destinationFood = FindClosestFood();
+                    _destinationFood = FindClosestFood();
                 }
                 catch (Exception e)
                 {
@@ -22,7 +33,7 @@ public class WanderingEnemy : EnemyController
             }
             else
             {
-                _movement.MoveTo(destinationFood.transform.position);
+                _movement.MoveTo(_destinationFood.transform.position);
             }
 
             yield return null;
@@ -43,5 +54,15 @@ public class WanderingEnemy : EnemyController
         }
 
         return closestFood;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ChangeState(CombatState());
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        ChangeState(SearchingState());
     }
 }
