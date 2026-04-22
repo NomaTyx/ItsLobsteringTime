@@ -5,10 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private float _maxMoltTimerSeconds = 60f;
-
-    private float _moltTimerSeconds;
-
     private void Awake()
     {
         if(Instance != null)
@@ -21,19 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _moltTimerSeconds = _maxMoltTimerSeconds;
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
-    }
-
-    private void FixedUpdate()
-    {
-        _moltTimerSeconds -= Time.deltaTime;
-
-        if (_moltTimerSeconds <= 0)
-        {
-            PlayerEnergy.Instance.TryGrow();
-            _moltTimerSeconds = _maxMoltTimerSeconds;
-        }
     }
 }

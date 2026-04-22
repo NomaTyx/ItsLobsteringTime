@@ -9,17 +9,24 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public float Energy => _currentEnergy;
     public float MaxEnergy => _maxEnergy;
 
+    [Header("Energy")]
+    [SerializeField] private int _maxEnergy = 100;
+    [SerializeField] private float _energyDrainPerSecond = 1;
+
+    [Header("Growth")]
+    [SerializeField] private float _maxMoltTimerSeconds = 60f;
+    [SerializeField] private float[] _playerGrowthEnergyCosts;
+    [SerializeField] private float _playerGrowthPercent = 0.15f;
+
+    [SerializeField] private float _eatRange = 5;
+
     public event Action PlayerDamaged;
     public event Action PlayerDead;
 
-    [SerializeField] private int _maxEnergy = 100;
-    [SerializeField] private float _energyDrainPerSecond = 1;
-    [SerializeField] private float[] _playerGrowthEnergyCosts;
-    [SerializeField] private float _playerGrowthPercent = 0.15f;
-    [SerializeField] private float _eatRange = 5;
-
     private int _currentSize = 0;
     private float _currentEnergy;
+
+    private float _moltTimerSeconds;
 
     private void Awake()
     {
@@ -30,6 +37,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         }
 
         Instance = this;
+
+        _moltTimerSeconds = _maxMoltTimerSeconds;
     }
 
     private void Start()
@@ -102,9 +111,15 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     void FixedUpdate()
     {
-        //for the love of GOD please remember to change this later
-        //Debug.Log($"Current energy: {_currentEnergy}");
         _currentEnergy -= _energyDrainPerSecond * Time.fixedDeltaTime;
+
+        _moltTimerSeconds -= Time.deltaTime;
+
+        if (_moltTimerSeconds <= 0)
+        {
+            TryGrow();
+            _moltTimerSeconds = _maxMoltTimerSeconds;
+        }
     }
 }
 
