@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5404719504030425435}
   - component: {fileID: 4635477973041207197}
   - component: {fileID: 2671419062514002493}
+  - component: {fileID: 2318938189608526258}
   m_Layer: 0
   m_Name: WanderingEnemy
   m_TagString: Untagged
@@ -51,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WanderingEnemy
   _target: {fileID: 0}
+  _wanderingSpeed: 5
+  _combatSpeed: 2.5
+  _weapon: {fileID: 2318938189608526258}
   _playerDetectionRadius: 10
 --- !u!136 &2890581600817454733
 CapsuleCollider:
@@ -176,10 +180,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -187,6 +191,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2318938189608526258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981920065873151781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8c0b668b8290e47bf237a919871954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
 --- !u!1001 &5456368615821408291
 PrefabInstance:
   m_ObjectHideFlags: 0

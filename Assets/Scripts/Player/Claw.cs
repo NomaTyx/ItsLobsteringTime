@@ -20,7 +20,7 @@ public class Claw : Weapon
     /// Performs the attack, which may either deal damage directly or spawn a projectile or start an animation.
     /// </summary>
     /// <param name="target"></param>
-    public override void Attack(IAttackable target)
+    protected override void Attack(IAttackable target)
     {
 
     }

@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class EnemyWeapon : Weapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float Range {get; private set;} = 3;
+    public override void TryAttackWithTarget(IAttackable target)
     {
-        
+        Attack(target);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Attack(IAttackable target)
     {
-        
+        Debug.Log("attacked player with" + gameObject.name);
     }
 }
