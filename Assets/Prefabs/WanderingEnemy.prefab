@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4635477973041207197}
   - component: {fileID: 2671419062514002493}
   - component: {fileID: 2318938189608526258}
+  - component: {fileID: -3475844899874498789}
   m_Layer: 7
   m_Name: WanderingEnemy
   m_TagString: Untagged
@@ -206,6 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8c0b668b8290e47bf237a919871954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
+--- !u!114 &-3475844899874498789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981920065873151781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0be0be7bc9b3a489369524117d1693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxHealth: 1
 --- !u!1001 &5456368615821408291
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class Claw : Weapon
     [SerializeField] float _attackCooldownSeconds = 0.5f;
     [SerializeField] float _attackRange = 2f;
     [SerializeField] float _attackAngleDeg = 90f;
+    [SerializeField] float _attackDamage = 1f;
 
     /// <summary>
     /// Tries to attack which entails looking through its range to find a target
@@ -24,6 +25,10 @@ public class Claw : Weapon
                 continue;
             }
 
+            if(c.gameObject.TryGetComponent<Health>(out Health hitHealth))
+            {
+                hitHealth.Damage(new DamageInfo(_attackDamage, hitHealth.gameObject, gameObject));
+            }
             Debug.Log("Hit " + c.name + "!!");
         }
     }

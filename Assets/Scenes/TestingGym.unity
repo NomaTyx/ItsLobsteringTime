@@ -1751,6 +1751,7 @@ MonoBehaviour:
   _attackCooldownSeconds: 0.5
   _attackRange: 5
   _attackAngleDeg: 90
+  _attackDamage: 1
 --- !u!114 &2069129407
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,23 +2,39 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(Health))]
 public abstract class EnemyController : Controller
 {
     protected CharacterMovement _movement;
-    private IEnumerator _currentState;
+    protected IEnumerator _currentState;
+    protected Health _health;
 
     protected void Awake()
     {
         _movement = GetComponent<CharacterMovement>();
+        _health = GetComponent<Health>();
+
+        _health.Died += Die;
         Init();
+    }
+
+    private void OnDestroy()
+    {
+        _health.Died -= Die;
     }
 
     protected abstract void Init();
 
     void Start()
     {
-        //change this later, this is just so that i can check if it works
         ChangeState(SearchingState());
+    }
+
+    public void Die()
+    {
+        Debug.Log("this thing is dead");
+        _movement.Stop();
+        ChangeState(DeadState());
     }
 
     protected void ChangeState(IEnumerator newState)
@@ -40,6 +56,11 @@ public abstract class EnemyController : Controller
     protected virtual IEnumerator CombatState()
     {
         Debug.Log("Base attack");
+        yield return null;
+    }
+
+    protected virtual IEnumerator DeadState()
+    {
         yield return null;
     }
 }
