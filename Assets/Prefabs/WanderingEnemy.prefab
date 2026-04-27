@@ -54,6 +54,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _wanderingSpeed: 5
   _combatSpeed: 2.5
+  _foodEatingRange: 5
   _secondsBetweenBites: 1
   _chanceToEatFood: 0.25
   _weapon: {fileID: 2318938189608526258}
@@ -185,7 +186,7 @@ SphereCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 247
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

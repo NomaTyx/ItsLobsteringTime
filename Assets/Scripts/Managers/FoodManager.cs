@@ -5,7 +5,7 @@ public class FoodManager : MonoBehaviour
 {
     [SerializeField] private Food[] _foodPrefabs;
     [SerializeField] private int _maxFoodInScene;
-    [SerializeField] private int _spawnSquareBound = 50;
+    [SerializeField] private int _spawnSquareBound = 100;
     private int _minX => -_spawnSquareBound / 2;
     private int _maxX => _spawnSquareBound / 2;
     private int _minZ => -_spawnSquareBound / 2;

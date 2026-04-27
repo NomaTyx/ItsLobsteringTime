@@ -9,7 +9,7 @@ public class WanderingEnemy : EnemyController
     [SerializeField] private float _combatSpeed = 2.5f;
 
     [Header("Food")]
-    [SerializeField] private float _foodEatingRange = 2.5f;
+    [SerializeField] private float _foodEatingRange = 5f;
     [SerializeField] private float _secondsBetweenBites = 1;
     [SerializeField] private float _chanceToEatFood = 0.25f;
 
@@ -54,6 +54,7 @@ public class WanderingEnemy : EnemyController
             else
             {
                 _movement.MoveTo(_destinationFood.transform.position);
+
                 if(Vector3.Distance(transform.position, _destinationFood.transform.position) < _foodEatingRange)
                 {
                     ChangeState(EatingState());
@@ -110,6 +111,10 @@ public class WanderingEnemy : EnemyController
         }
     }
 
+    /// <summary>
+    /// This 
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         _target = other.gameObject;

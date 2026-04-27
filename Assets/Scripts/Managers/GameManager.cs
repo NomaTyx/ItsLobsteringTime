@@ -20,4 +20,9 @@ public class GameManager : MonoBehaviour
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
     }
+
+    private void OnToggleDebug()
+    {
+
+    }
 }

@@ -6,7 +6,6 @@ public abstract class EnemyController : Controller
 {
     protected CharacterMovement _movement;
     private IEnumerator _currentState;
-    protected GameObject _target;
 
     protected void Awake()
     {
