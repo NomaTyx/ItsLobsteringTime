@@ -1,13 +1,16 @@
-using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class WanderingEnemy : EnemyController
 {
-    [Header("Speed")]
+    [Header("Stats")]
     [SerializeField] private float _wanderingSpeed = 5;
     [SerializeField] private float _combatSpeed = 2.5f;
+
+    [Header("Food")]
+    [SerializeField] private float _secondsBetweenBites = 1;
+    [SerializeField] private float _chanceToEatFood = 0.25f;
 
     [Header("Combat")]
     [SerializeField] private Weapon _weapon;
@@ -25,9 +28,15 @@ public class WanderingEnemy : EnemyController
         _characterMovement = GetComponent<CharacterMovement>();
     }
 
+    /// <summary>
+    /// An AI state for an enemy when it is searching for food. Right now,
+    /// it just wanders from food to food until it finds one.
+    /// </summary>
+    /// <returns></returns>
     protected override IEnumerator SearchingState()
     {
         _characterMovement.Speed = _wanderingSpeed;
+
         while (true) 
         {
             if (_destinationFood == null)
@@ -36,7 +45,7 @@ public class WanderingEnemy : EnemyController
                 {
                     _destinationFood = FindClosestFood();
                 }
-                catch (Exception e)
+                catch
                 {
                     Debug.Log("food is null");
                 }
@@ -64,6 +73,34 @@ public class WanderingEnemy : EnemyController
         }
 
         return closestFood;
+    }
+
+    protected IEnumerator EatingState()
+    {
+        float eatingTimer = 0;
+
+        while(true)
+        {
+            eatingTimer += Time.deltaTime;
+            if(eatingTimer > _secondsBetweenBites)
+            {
+                Eat();
+                eatingTimer = 0;
+            }
+            if(_destinationFood == null)
+            {
+                ChangeState(SearchingState());
+            }
+            yield return null;
+        }
+    }
+
+    private void Eat()
+    {
+        if((int)Random.Range(0, 1 / _chanceToEatFood) == 0)
+        {
+            _destinationFood.OnEaten();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

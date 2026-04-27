@@ -7,12 +7,13 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private EnemyController[] _wanderingEnemyPrefabs;
     [SerializeField] private int _maxEnemiesInScene = 5;
-    [SerializeField] private int _spawnPointXMinBound = -50;
-    [SerializeField] private int _spawnPointXMaxBound = 50;
-    [SerializeField] private int _spawnPointZMinBound = -50;
-    [SerializeField] private int _spawnPointZMaxBound = 50;
+    [SerializeField] private int _spawnSquareBound = 100;
+    private int _spawnPointXMinBound => -_spawnSquareBound / 2;
+    private int _spawnPointXMaxBound => _spawnSquareBound / 2;
+    private int _spawnPointZMinBound => -_spawnSquareBound / 2;
+    private int _spawnPointZMaxBound => _spawnSquareBound / 2;
 
-    public List<GameObject> EnemiesInScene {get; private set; }= new List<GameObject>();
+    public List<GameObject> EnemiesInScene { get; private set; }= new List<GameObject>();
 
     private void Awake()
     {
@@ -31,9 +32,9 @@ public class EnemyManager : MonoBehaviour
         {
             GameObject enemyToInstantiate = _wanderingEnemyPrefabs[Random.Range(0, _wanderingEnemyPrefabs.Length)].gameObject;
 
-            Vector3 spawnPoint = new Vector3(Random.Range(_spawnPointXMinBound, _spawnPointXMaxBound), 
-                                            0, 
-                                            Random.Range(_spawnPointZMinBound, _spawnPointZMinBound));
+            Vector3 spawnPoint = new Vector3(x: Random.Range(_spawnPointXMinBound, _spawnPointXMaxBound), 
+                                             z: Random.Range(_spawnPointZMinBound, _spawnPointZMaxBound),
+                                             y: 0);
 
             EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
         }

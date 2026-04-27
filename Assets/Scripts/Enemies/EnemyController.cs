@@ -43,10 +43,4 @@ public abstract class EnemyController : Controller
         Debug.Log("Base attack");
         yield return null;
     }
-
-    protected virtual IEnumerator EatingState()
-    {
-        Debug.Log("Base eat");
-        yield return null;
-    }
 }

@@ -1498,10 +1498,7 @@ MonoBehaviour:
   _wanderingEnemyPrefabs:
   - {fileID: 268622288}
   _maxEnemiesInScene: 5
-  _spawnPointXMinBound: -50
-  _spawnPointXMaxBound: 50
-  _spawnPointZMinBound: -50
-  _spawnPointZMaxBound: 50
+  _spawnSquareBound: 20
 --- !u!1 &1679100291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1546,7 @@ MonoBehaviour:
   _foodPrefabs:
   - {fileID: 2198205209685914895, guid: fa6252a1e3230b54f8122d5ca4fbef0e, type: 3}
   _maxFoodInScene: 25
-  _floorCollider: {fileID: 1387032403}
+  _spawnSquareBound: 20
 --- !u!1 &1705837060
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,11 @@ public class FoodManager : MonoBehaviour
 {
     [SerializeField] private Food[] _foodPrefabs;
     [SerializeField] private int _maxFoodInScene;
-    [SerializeField] private BoxCollider _floorCollider;
+    [SerializeField] private int _spawnSquareBound = 50;
+    private int _minX => -_spawnSquareBound / 2;
+    private int _maxX => _spawnSquareBound / 2;
+    private int _minZ => -_spawnSquareBound / 2;
+    private int _maxZ => _spawnSquareBound / 2;
 
     public static FoodManager Instance { get; private set; }
 
@@ -26,8 +30,8 @@ public class FoodManager : MonoBehaviour
     {
         while (FoodInScene.Count < _maxFoodInScene)
         {
-            float spawnPointX = Random.Range(_floorCollider.bounds.min.x, _floorCollider.bounds.max.x);
-            float spawnPointZ = Random.Range(_floorCollider.bounds.min.z, _floorCollider.bounds.max.z);
+            float spawnPointX = Random.Range(_minX, _maxX);
+            float spawnPointZ = Random.Range(_minZ, _maxZ);
 
             GameObject foodToInstantiate = _foodPrefabs[Random.Range(0, _foodPrefabs.Length)].gameObject;
             Vector3 foodInstantiationLocation = new Vector3(spawnPointX, 0.25f, spawnPointZ);
