@@ -2983,6 +2983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _foodPrefabs:
   - {fileID: 2198205209685914895, guid: fa6252a1e3230b54f8122d5ca4fbef0e, type: 3}
+  - {fileID: 156793388037062399, guid: 918c6b91f79b0484fb1a69cdad4adf07, type: 3}
   _maxFoodInScene: 25
   _spawnSquareBound: 20
 --- !u!1001 &1697691698
@@ -3756,9 +3757,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1705837061}
   - {fileID: 330585546}
   - {fileID: 410087041}
+  - {fileID: 1705837061}
   - {fileID: 1893869466}
   - {fileID: 1022826488}
   - {fileID: 2095930267}
