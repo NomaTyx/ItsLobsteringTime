@@ -40,6 +40,11 @@ public class PlayerController : Controller
         PlayerEnergy.Instance.Eat();
     }
 
+    public void OnDash()
+    {
+        _movement.Dash();
+    }
+
     protected virtual void Update()
         {
             if (_movement == null) return;

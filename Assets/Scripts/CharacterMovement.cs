@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using System.Collections;
 
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -14,6 +15,9 @@ public class CharacterMovement : MonoBehaviour
     [field: Header("Movement")]
     [field: SerializeField] public float Speed { get; set; } = 5f;
     [field: SerializeField] public float Acceleration { get; set; } = 10f;
+    [field: SerializeField] public float DashDistance { get; set; } = 50f;
+    [field: SerializeField] public float DashTime { get; set; } = 0.1f;
+    private float _dashSpeedMPS => DashDistance / DashTime;
     [field: SerializeField] public float TurnSpeed { get; set; } = 15f;
     [field: SerializeField] public bool OnlyTurnWithInput { get; set; } = true;
     [field: SerializeField] public float StoppingDistance { get; set; } = 0.25f;
@@ -60,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 SurfaceVelocity { get; protected set; }
     public bool CanMove { get; set; } = true;
     public bool CanTurn { get; set; } = true;
+    public bool IsDashing { get; private set; } = false;
     public Vector3 GroundNormal { get; protected set; } = Vector3.up;
     public float LastGroundedTime { get; protected set; }
     public Vector3 LastGroundedPosition { get; protected set; }
@@ -199,7 +204,7 @@ public class CharacterMovement : MonoBehaviour
         float speed = Speed;
 
         // calculates desirection movement velocity
-        Vector3 targetVelocity = forward * (speed * MoveSpeedMultiplier);
+        Vector3 targetVelocity = forward * (IsDashing? _dashSpeedMPS : (speed * MoveSpeedMultiplier));
         if (!CanMove) targetVelocity = Vector3.zero;
 
         // adds velocity of surface under character, if character is stationary
@@ -373,5 +378,17 @@ public class CharacterMovement : MonoBehaviour
         // correct movement direction along spline
         SplineLookDirection = splineTangent * Mathf.Sign(sideInput);
         return MoveInput.magnitude * sideInput * splineTangent;
+    }
+
+    public void Dash()
+    {
+        StartCoroutine(DashCoroutine());
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        IsDashing = true;
+        yield return new WaitForSeconds(DashTime);
+        IsDashing = false;
     }
 }
