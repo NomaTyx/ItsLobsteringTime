@@ -7,7 +7,15 @@ public class Food : MonoBehaviour
     public float EnergyValue => _energyValue;
 
     [SerializeField] private float _energyValue = 10f;
-    [SerializeField] private int SizeRequirement = (int) LobsterSize.Small;
+    [SerializeField] private int _size = (int) LobsterSize.Small;
+
+    public virtual void TryEat(Controller eater)
+    {
+        if(eater.Size >= _size)
+        {
+            OnEaten();
+        }
+    }
 
     public virtual void OnEaten()
     {
