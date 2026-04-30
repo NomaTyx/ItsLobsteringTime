@@ -58,4 +58,9 @@ public class EnemyManager : MonoBehaviour
             EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
         }
     }
+
+    public void RemoveEnemyFromScene(GameObject enemy)
+    {
+        EnemiesInScene.Remove(enemy);
+    }
 }

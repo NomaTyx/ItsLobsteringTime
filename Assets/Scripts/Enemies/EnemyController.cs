@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterMovement))]
@@ -21,6 +22,7 @@ public abstract class EnemyController : Controller
     private void OnDestroy()
     {
         _health.Died -= Die;
+        EnemyManager.Instance.RemoveEnemyFromScene(gameObject);
     }
 
     protected abstract void Init();
