@@ -14,7 +14,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     [SerializeField] private float _energyDrainPerSecond = 1;
 
     [Header("Growth")]
-    [SerializeField] private float _maxMoltTimerSeconds = 60f;
+    [SerializeField] private float _timeBeforeMolt = 20f;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
     [SerializeField] private float _playerGrowthPercent = 0.15f;
 
@@ -38,7 +38,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         Instance = this;
 
-        _moltTimerSeconds = _maxMoltTimerSeconds;
+        _moltTimerSeconds = _timeBeforeMolt;
     }
 
     private void Start()
@@ -49,6 +49,11 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public void GainEnergy(float amount)
     {
         _currentEnergy = Mathf.Min(_currentEnergy + amount, _maxEnergy);
+    }
+
+    public void ConsumeEnergy(float amount)
+    {
+        _currentEnergy = Mathf.Max(_currentEnergy - amount, 0);
     }
 
     public void TryGrow()
@@ -118,7 +123,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         if (_moltTimerSeconds <= 0)
         {
             TryGrow();
-            _moltTimerSeconds = _maxMoltTimerSeconds;
+            _moltTimerSeconds = _timeBeforeMolt;
         }
     }
 }
