@@ -34,8 +34,6 @@ public abstract class EnemyController : Controller
 
     public void Die()
     {
-        Debug.Log("this thing is dead");
-        _movement.Stop();
         ChangeState(DeadState());
     }
 
@@ -63,6 +61,8 @@ public abstract class EnemyController : Controller
 
     protected virtual IEnumerator DeadState()
     {
+        _movement.Stop();
+        Destroy(gameObject);
         yield return null;
     }
 }
