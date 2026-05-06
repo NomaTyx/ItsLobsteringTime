@@ -129,7 +129,7 @@ public class WanderingEnemy : EnemyController
             _characterMovement.MoveTo(_target.transform.position);
             if(Vector3.Distance(transform.position, _target.transform.position) <= _weapon.AttackRange)
             {
-                _weapon.TryAttackWithTarget(_target.GetComponent<IAttackable>());
+                _weapon.TryAttack(_target.GetComponent<IAttackable>());
             }
             yield return null;
         }

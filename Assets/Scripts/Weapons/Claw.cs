@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -13,32 +14,53 @@ public class Claw : Weapon
     /// <summary>
     /// Tries to attack which entails looking through its range to find a target
     /// </summary>
-    public override void TryAttack()
+    public override bool TryAttack()
     {
-        foreach (Collider c in Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy"))) 
+        if (!base.TryAttack()) return false;
+
+        IAttackable[] targets = Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy")).Where((c) =>
         {
             Vector3 positionDiff = c.transform.position - transform.position;
             float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
-            
-            if (angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2)
-            {
-                continue;
-            }
+            return !(angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2);
+        }).
+        Where((c) => c.TryGetComponent(out Health hitHealth)).Select(c => c.GetComponent<IAttackable>()).ToArray();
 
-            if(c.gameObject.TryGetComponent<Health>(out Health hitHealth))
-            {
-                hitHealth.Damage(new DamageInfo(_attackDamage, hitHealth.gameObject, gameObject));
-            }
-            Debug.Log("Hit " + c.name + "!!");
-        }
+
+        // foreach (Collider c in Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy")))
+        // {
+        //     Vector3 positionDiff = c.transform.position - transform.position;
+        //     float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
+
+        //     if (angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2)
+        //     {
+        //         continue;
+        //     }
+
+        //     if (c.gameObject.TryGetComponent<Health>(out Health hitHealth))
+        //     {
+        //         hitHealth.Damage(new DamageInfo(_attackDamage, hitHealth.gameObject, gameObject));
+        //     }
+        //     Debug.Log("Hit " + c.name + "!!");
+        // }
+
+        Attack(targets);
+
+        return true;
     }
 
-    /// <summary>
-    /// Performs the attack, which may either deal damage directly or spawn a projectile or start an animation.
-    /// </summary>
-    /// <param name="target"></param>
-    protected override void Attack(IAttackable target)
+    protected override void Attack()
     {
+        base.Attack();
+    }
 
+    protected override void Attack(params IAttackable[] targets)
+    {
+        foreach(IAttackable enemy in targets)
+        {
+            enemy.Damage(new DamageInfo(_attackDamage, gameObject, gameObject));
+        }
+        
+        base.Attack(targets);
     }
 }
