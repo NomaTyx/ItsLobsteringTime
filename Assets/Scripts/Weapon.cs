@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public float AttackRange {get; private set;} = 2.5f;
-    public float AttackCooldownSeconds {get; private set;} = 2.5f;
+    public float AttackRange {get; protected set;} = 2.5f;
+    public float AttackCooldownSeconds {get; protected set;} = 2.5f;
     protected float _nextAttackTime;
 
     /// <summary>

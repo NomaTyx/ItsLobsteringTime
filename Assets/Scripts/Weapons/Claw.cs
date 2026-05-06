@@ -18,31 +18,20 @@ public class Claw : Weapon
     {
         if (!base.TryAttack()) return false;
 
-        IAttackable[] targets = Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy")).Where((c) =>
-        {
-            Vector3 positionDiff = c.transform.position - transform.position;
-            float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
-            return !(angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2);
-        }).
-        Where((c) => c.TryGetComponent(out Health hitHealth)).Select(c => c.GetComponent<IAttackable>()).ToArray();
+        IAttackable[] targets = Physics.OverlapSphere(
+            transform.position,
+            _attackRange,
+            LayerMask.GetMask("Enemy"),
+            QueryTriggerInteraction.Ignore)
+            .Where((c) =>
+            {
+                    Vector3 positionDiff = c.transform.position - transform.position;
+                    float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
+                    return !(angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2);
+            }).
+            Where((c) => c.TryGetComponent(out Health hitHealth)).Select(c => c.GetComponent<IAttackable>()).ToArray();
 
-
-        // foreach (Collider c in Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy")))
-        // {
-        //     Vector3 positionDiff = c.transform.position - transform.position;
-        //     float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
-
-        //     if (angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2)
-        //     {
-        //         continue;
-        //     }
-
-        //     if (c.gameObject.TryGetComponent<Health>(out Health hitHealth))
-        //     {
-        //         hitHealth.Damage(new DamageInfo(_attackDamage, hitHealth.gameObject, gameObject));
-        //     }
-        //     Debug.Log("Hit " + c.name + "!!");
-        // }
+        if (targets.Length == 0) return false;
 
         Attack(targets);
 
@@ -56,11 +45,11 @@ public class Claw : Weapon
 
     protected override void Attack(params IAttackable[] targets)
     {
-        foreach(IAttackable enemy in targets)
+        foreach (IAttackable enemy in targets)
         {
             enemy.Damage(new DamageInfo(_attackDamage, gameObject, gameObject));
         }
-        
+
         base.Attack(targets);
     }
 }
