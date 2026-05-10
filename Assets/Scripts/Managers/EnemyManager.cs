@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -41,7 +42,10 @@ public class EnemyManager : MonoBehaviour
                                              z: Random.Range(_spawnPointZMinBound, _spawnPointZMaxBound),
                                              y: 0);
 
-            EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
+            if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            {
+                EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
+            }
         }
     }
 

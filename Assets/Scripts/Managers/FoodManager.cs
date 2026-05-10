@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FoodManager : MonoBehaviour
 {
@@ -36,7 +37,11 @@ public class FoodManager : MonoBehaviour
             GameObject foodToInstantiate = _foodPrefabs[Random.Range(0, _foodPrefabs.Length)].gameObject;
             Vector3 foodInstantiationLocation = new Vector3(spawnPointX, 0f, spawnPointZ);
 
-            FoodInScene.Add(Instantiate(foodToInstantiate, foodInstantiationLocation, Quaternion.identity));
+            // SamplePosition returns true if a valid point is found on the NavMesh
+            if (NavMesh.SamplePosition(foodInstantiationLocation, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            {
+                FoodInScene.Add(Instantiate(foodToInstantiate, foodInstantiationLocation, Quaternion.identity));
+            }
         }
 
     }

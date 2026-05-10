@@ -3190,8 +3190,8 @@ MonoBehaviour:
   - {fileID: 3497320019145587868, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
   _territorialEnemyPrefabs: []
   _maxWanderingEnemiesInScene: 5
-  _maxTerritorialEnemiesInScene: 5
-  _spawnSquareBound: 20
+  _maxTerritorialEnemiesInScene: 0
+  _spawnSquareBound: 100
 --- !u!1 &1679100291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3240,7 +3240,7 @@ MonoBehaviour:
   - {fileID: 2198205209685914895, guid: fa6252a1e3230b54f8122d5ca4fbef0e, type: 3}
   - {fileID: 156793388037062399, guid: 918c6b91f79b0484fb1a69cdad4adf07, type: 3}
   _maxFoodInScene: 25
-  _spawnSquareBound: 20
+  _spawnSquareBound: 100
 --- !u!1001 &1697691698
 PrefabInstance:
   m_ObjectHideFlags: 0
