@@ -11,8 +11,8 @@ public class PlayerController : Controller
     
     private CharacterMovement _movement;
     private Claw _claw;
-
     private Vector2 MoveInput;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -23,9 +23,10 @@ public class PlayerController : Controller
         }
 
         Instance = this;
-        //_movement = GetComponent<PlayerMovement>();
         _movement = GetComponent<CharacterMovement>();
         _claw = GetComponent<Claw>();
+        _animator = GetComponent<Animator>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -40,6 +41,7 @@ public class PlayerController : Controller
         if (PlayerEnergy.Instance.Energy <= 0) return;
 
         _claw.TryAttack();
+        _animator.Play("lobster_attack");
         PlayerEnergy.Instance.ConsumeEnergy(_attackEnergyCost);
     }
 
