@@ -34,7 +34,7 @@ public class FoodManager : MonoBehaviour
             float spawnPointZ = Random.Range(_minZ, _maxZ);
 
             GameObject foodToInstantiate = _foodPrefabs[Random.Range(0, _foodPrefabs.Length)].gameObject;
-            Vector3 foodInstantiationLocation = new Vector3(spawnPointX, 0.25f, spawnPointZ);
+            Vector3 foodInstantiationLocation = new Vector3(spawnPointX, 0f, spawnPointZ);
 
             FoodInScene.Add(Instantiate(foodToInstantiate, foodInstantiationLocation, Quaternion.identity));
         }
