@@ -4004,6 +4004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
+  _attackEnergyCost: 10
+  _dashEnergyCost: 15
 --- !u!114 &2069129401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,6 +4077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxEnergy: 100
   _energyDrainPerSecond: 1
+  _zeroEnergyDeathTimerSeconds: 10
   _timeBeforeMolt: 20
   _playerGrowthEnergyCosts:
   - 30

@@ -12,13 +12,14 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     public virtual bool TryAttack()
     {
-        Debug.Log("Tried attack with undefined weapon.");
+        if (Time.time < _nextAttackTime) return false;
         return true;
     }
 
-    public virtual void TryAttack(IAttackable target)
+    public virtual bool TryAttack(IAttackable target)
     {
-        Debug.Log("Tried attackWithTarget with undefined weapon");
+        if (Time.time < _nextAttackTime) return false;
+        return true;
     }
 
     /// <summary>

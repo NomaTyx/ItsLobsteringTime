@@ -12,6 +12,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     [Header("Energy")]
     [SerializeField] private int _maxEnergy = 100;
     [SerializeField] private float _energyDrainPerSecond = 1;
+    [SerializeField] private float _zeroEnergyDeathTimerSeconds = 10f;
 
     [Header("Growth")]
     [SerializeField] private float _timeBeforeMolt = 20f;
@@ -25,6 +26,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     private int _currentSize = 0;
     private float _currentEnergy;
+    private bool _dyingFromNoEnergy = false;
+    private float _timeToDie;
 
     private float _moltTimerSeconds;
 
@@ -73,7 +76,6 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         _currentSize++;
         transform.localScale = Vector3.one * (1 + _playerGrowthPercent * _currentSize);
         _currentEnergy -= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)];
-        Debug.Log("Grew!");
     }
 
     public virtual void Eat()
@@ -102,7 +104,6 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         GainEnergy(closestFood.EnergyValue);
         closestFood.OnEaten();
     }
-
     public void Damage(DamageInfo info)
     {
         _currentEnergy -= info.Amount;
@@ -112,13 +113,34 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     private void Die()
     {
         Debug.Log("u ded lole");
+        Destroy(gameObject);
     }
 
     void FixedUpdate()
     {
-        _currentEnergy -= _energyDrainPerSecond * Time.fixedDeltaTime;
+        _currentEnergy = Math.Max(0, _currentEnergy - _energyDrainPerSecond * Time.fixedDeltaTime);
 
-        _moltTimerSeconds -= Time.deltaTime;
+        if (_currentEnergy == 0) 
+        { 
+            if(!_dyingFromNoEnergy)
+            {
+                _dyingFromNoEnergy = true;
+                _timeToDie = Time.time + _zeroEnergyDeathTimerSeconds;
+            }
+            else
+            {
+                if (Time.time >= _timeToDie)
+                {
+                    Die();
+                }
+            }
+        }
+        else
+        {
+            _dyingFromNoEnergy = false;
+        }
+
+            _moltTimerSeconds -= Time.deltaTime;
 
         if (_moltTimerSeconds <= 0)
         {

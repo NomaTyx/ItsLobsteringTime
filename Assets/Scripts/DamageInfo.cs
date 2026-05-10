@@ -12,4 +12,9 @@ public class DamageInfo
         Target = target;
         Instigator = instigator;
     }
+
+    public void SetAmount(float amount)
+    {
+        Amount = amount;
+    }
 }

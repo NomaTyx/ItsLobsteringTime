@@ -19,6 +19,17 @@ public class GameManager : MonoBehaviour
     {
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
+        PlayerEnergy.Instance.PlayerDead += GameOver;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerEnergy.Instance.PlayerDead -= GameOver;
+    }
+
+    private void GameOver()
+    {
+
     }
 
     private void OnToggleDebug()

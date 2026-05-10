@@ -6,6 +6,9 @@ public class PlayerController : Controller
 {
     public static PlayerController Instance;
 
+    [SerializeField] private float _attackEnergyCost = 10f;
+    [SerializeField] private float _dashEnergyCost = 15f;
+    
     private CharacterMovement _movement;
     private Claw _claw;
 
@@ -34,7 +37,10 @@ public class PlayerController : Controller
 
     public void OnAttack()
     {
+        if (PlayerEnergy.Instance.Energy <= 0) return;
+
         _claw.TryAttack();
+        PlayerEnergy.Instance.ConsumeEnergy(_attackEnergyCost);
     }
 
     public void OnEat()
@@ -44,7 +50,10 @@ public class PlayerController : Controller
 
     public void OnDash()
     {
+        if (PlayerEnergy.Instance.Energy <= 0) return;
+
         _movement.Dash();
+        PlayerEnergy.Instance.ConsumeEnergy(_dashEnergyCost);
     }
 
     protected virtual void Update()
