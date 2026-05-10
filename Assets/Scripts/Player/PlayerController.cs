@@ -23,6 +23,8 @@ public class PlayerController : Controller
         //_movement = GetComponent<PlayerMovement>();
         _movement = GetComponent<CharacterMovement>();
         _claw = GetComponent<Claw>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OnMove(InputValue movementValue)
