@@ -4,6 +4,8 @@ public abstract class Weapon : MonoBehaviour
 {
     public float AttackRange {get; protected set;} = 2.5f;
     public float AttackCooldownSeconds {get; protected set;} = 2.5f;
+    public AnimatorOverrideController AnimController;
+
     protected float _nextAttackTime;
 
     /// <summary>
@@ -13,6 +15,7 @@ public abstract class Weapon : MonoBehaviour
     public virtual bool TryAttack()
     {
         if (Time.time < _nextAttackTime) return false;
+        
         return true;
     }
 

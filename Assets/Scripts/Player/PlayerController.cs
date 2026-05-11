@@ -6,11 +6,10 @@ public class PlayerController : Controller
 {
     public static PlayerController Instance;
 
-    [SerializeField] private float _attackEnergyCost = 10f;
     [SerializeField] private float _dashEnergyCost = 15f;
     
     private CharacterMovement _movement;
-    private Claw _claw;
+    private Weapon _weapon;
     private Vector2 MoveInput;
     private Animator _animator;
 
@@ -24,8 +23,9 @@ public class PlayerController : Controller
 
         Instance = this;
         _movement = GetComponent<CharacterMovement>();
-        _claw = GetComponent<Claw>();
+        _weapon = GetComponentInChildren<Weapon>();
         _animator = GetComponent<Animator>();
+        _animator.runtimeAnimatorController = _weapon.AnimController;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -38,11 +38,7 @@ public class PlayerController : Controller
 
     public void OnAttack()
     {
-        if (PlayerEnergy.Instance.Energy <= 0) return;
-
-        _claw.TryAttack();
-        _animator.Play("lobster_attack");
-        PlayerEnergy.Instance.ConsumeEnergy(_attackEnergyCost);
+        _weapon.TryAttack();
     }
 
     public void OnEat()

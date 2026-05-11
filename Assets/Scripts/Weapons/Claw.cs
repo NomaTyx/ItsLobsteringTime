@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +11,14 @@ public class Claw : Weapon
     [SerializeField] private float _attackRange = 2f;
     [SerializeField] private float _attackAngleDeg = 90f;
     [SerializeField] private float _attackDamage = 1f;
+    [SerializeField] private float _attackEnergyCost = 10f;
+
+    private Animator _animator;
+
+    void Awake()
+    {
+        _animator = GetComponentInParent<Animator>();
+    }
 
     /// <summary>
     /// Tries to attack which entails looking through its range to find a target
@@ -25,9 +34,9 @@ public class Claw : Weapon
                                     QueryTriggerInteraction.Ignore).
                                 Where((c) =>
                                 {
-                                        Vector3 positionDiff = c.transform.position - transform.position;
-                                        float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
-                                        return !(angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2);
+                                    Vector3 positionDiff = c.transform.position - transform.position;
+                                    float angleToTarget = Vector3.Angle(transform.forward, positionDiff);
+                                    return !(angleToTarget > _attackAngleDeg / 2 || angleToTarget < -_attackAngleDeg / 2);
                                 }).
                                 Where((c) => c.TryGetComponent(out Health hitHealth)).Select(c => c.GetComponent<IAttackable>()).ToArray();
 
@@ -49,6 +58,8 @@ public class Claw : Weapon
         {
             enemy.Damage(new DamageInfo(_attackDamage, gameObject, gameObject));
         }
+        _animator.Play("lobster_attack");
+        PlayerEnergy.Instance.ConsumeEnergy(_attackEnergyCost);
 
         base.Attack(targets);
     }
