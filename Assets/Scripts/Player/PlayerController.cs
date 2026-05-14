@@ -24,7 +24,7 @@ public class PlayerController : Controller
         Instance = this;
         _movement = GetComponent<CharacterMovement>();
         _weapon = GetComponentInChildren<Weapon>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _animator.runtimeAnimatorController = _weapon.AnimController;
 
         Cursor.lockState = CursorLockMode.Locked;

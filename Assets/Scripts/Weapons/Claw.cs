@@ -13,12 +13,7 @@ public class Claw : Weapon
     [SerializeField] private float _attackDamage = 1f;
     [SerializeField] private float _attackEnergyCost = 10f;
 
-    private Animator _animator;
-
-    void Awake()
-    {
-        _animator = GetComponentInParent<Animator>();
-    }
+    [SerializeField] private Animator _animator;
 
     /// <summary>
     /// Tries to attack which entails looking through its range to find a target
@@ -40,7 +35,7 @@ public class Claw : Weapon
                                 }).
                                 Where((c) => c.TryGetComponent(out Health hitHealth)).Select(c => c.GetComponent<IAttackable>()).ToArray();
 
-        if (targets.Length == 0) return false;
+        //if (targets.Length == 0) return false;
 
         Attack(targets);
 
