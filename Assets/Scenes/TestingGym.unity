@@ -5116,27 +5116,27 @@ MonoBehaviour:
   _legTargets:
   - {fileID: 924559847}
   - {fileID: 1998975204}
-  - {fileID: 1988674863}
   - {fileID: 2002464011}
+  - {fileID: 1988674863}
   - {fileID: 1325416883}
-  - {fileID: 556706126}
   - {fileID: 1780397052}
   - {fileID: 646589370}
+  - {fileID: 556706126}
   _legCubes:
   - {fileID: 319019067}
   - {fileID: 1152551118}
-  - {fileID: 915092496}
   - {fileID: 1135070329}
+  - {fileID: 915092496}
   - {fileID: 744707665}
-  - {fileID: 1497158041}
   - {fileID: 1560367383}
   - {fileID: 2075998680}
+  - {fileID: 1497158041}
   _lobster: {fileID: 2069129395}
   _maxStepDistance: 0.2
-  _framesForLegToMove: 5
-  _velocitySmoothness: 1
+  _framesForLegToMove: 6
+  _velocitySmoothness: 2
   _overStepMultiplier: 2
-  _framesBetweenSteps: 5
+  _framesBetweenSteps: 3
   _jitterCutoff: 0.1
   _stepHeight: 0.1
 --- !u!1 &1651886958
