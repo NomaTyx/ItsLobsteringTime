@@ -13,7 +13,6 @@ public class LobsterWalker : MonoBehaviour
     [SerializeField] private float _velocitySmoothness;
     [SerializeField] private float _overStepMultiplier = 1.5f;
     [SerializeField] private int _framesBetweenSteps = 2;
-    [SerializeField] private float _jitterCutoff = 0.1f;
     [SerializeField] private float _stepHeight = 0.1f;
 
     private bool _currentLeg = true;
@@ -71,7 +70,7 @@ public class LobsterWalker : MonoBehaviour
     {
         for(int i = 0; i < _legTargets.Length;i++)
         {
-            if (Vector3.Distance(_legTargets[i].transform.position, _legCubes[i].transform.position) >= _maxStepDistance)
+            if (Vector3.Distance(_legTargets[i].transform.position, _legCubes[i].transform.position) >= _maxStepDistance / 2)
             {
                 if(!_nextIndexToMove.Contains(i) && !_indexMoving.Contains(i))
                 {
@@ -106,7 +105,8 @@ public class LobsterWalker : MonoBehaviour
 
         for(int i = 1; i <= _framesForLegToMove; i++)
         {
-            _legTargets[index].transform.position = Vector3.Lerp(startingPosition, moveTo + new Vector3(0, Mathf.Sin(i / (_framesForLegToMove * _jitterCutoff) * Mathf.PI) * _stepHeight, 0), i / _framesForLegToMove);
+            _legTargets[index].transform.position = Vector3.Lerp(startingPosition, moveTo, i / _framesForLegToMove);
+            _legTargets[index].transform.position += new Vector3(0, Mathf.Clamp(Mathf.Sin(i / (_framesForLegToMove) * Mathf.PI) * _stepHeight, 0, _stepHeight), 0);
             yield return new WaitForEndOfFrame();
         }
 
