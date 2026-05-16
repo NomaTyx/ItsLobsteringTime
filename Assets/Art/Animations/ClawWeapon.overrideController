@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: ClawWeapon
   m_Controller: {fileID: 9100000, guid: cca527654451f4041a78eaa7a35ed0a8, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 64690df155c8b324aba274710a1684d5, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 64690df155c8b324aba274710a1684d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f76aab091abe4f48a40d7c3337977f8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6f76aab091abe4f48a40d7c3337977f8, type: 2}
