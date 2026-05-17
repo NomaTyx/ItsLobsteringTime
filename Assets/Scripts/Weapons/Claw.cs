@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// The player's default weapon.
@@ -29,5 +30,12 @@ public class Claw : Weapon
         _animator.Play("lobster_attack");
         PlayerEnergy.Instance.ConsumeEnergy(_attackEnergyCost);
         base.Attack();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.P)) {
+            _animator.Play("lobster_attack");
+        }
     }
 }
