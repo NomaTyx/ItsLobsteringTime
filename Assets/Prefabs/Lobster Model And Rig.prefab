@@ -3200,28 +3200,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LobsterWalker
   _legTargets:
-  - {fileID: 1713076293425572731}
-  - {fileID: 5089647905201839650}
-  - {fileID: 829920181946215433}
-  - {fileID: 4481036007581585864}
   - {fileID: 714425347962120710}
   - {fileID: 5779815575353553990}
+  - {fileID: 829920181946215433}
+  - {fileID: 4481036007581585864}
   - {fileID: 1061362940762032440}
   - {fileID: 5212350573013131252}
+  - {fileID: 1713076293425572731}
+  - {fileID: 5089647905201839650}
   _legCubes:
-  - {fileID: 2915715993852451120}
-  - {fileID: 690945275774124169}
-  - {fileID: 3640953785688302218}
-  - {fileID: 4837283403026791387}
   - {fileID: 5475617857333726156}
   - {fileID: 3968695602757890673}
+  - {fileID: 3640953785688302218}
+  - {fileID: 4837283403026791387}
   - {fileID: 3169848616607400864}
   - {fileID: 8455989339513839827}
+  - {fileID: 2915715993852451120}
+  - {fileID: 690945275774124169}
   _lobster: {fileID: 0}
-  _maxStepDistance: 0.1
-  _framesForLegToMove: 6
-  _velocitySmoothness: 2
-  _overStepMultiplier: 3
+  _maxStepDistance: 0.2
+  _framesForLegToMove: 5
+  _velocitySmoothness: 0.28
+  _overStepMultiplier: 1
   _framesBetweenSteps: 1
-  _jitterCutoff: 0.1
   _stepHeight: 0.1
