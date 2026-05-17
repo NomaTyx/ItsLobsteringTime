@@ -104,10 +104,11 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         GainEnergy(closestFood.EnergyValue);
         closestFood.OnEaten();
     }
+
     public void Damage(DamageInfo info)
     {
         _currentEnergy -= info.Amount;
-        PlayerDamaged.Invoke();
+        PlayerDamaged?.Invoke();
     }
 
     private void Die()

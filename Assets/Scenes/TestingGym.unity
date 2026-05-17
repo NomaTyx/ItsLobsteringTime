@@ -176,6 +176,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195912570571282887, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
+      propertyPath: _attackDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1981920065873151781, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
       propertyPath: m_Name
       value: WanderingEnemy
@@ -277,6 +281,10 @@ PrefabInstance:
     - target: {fileID: 5824583568746632427, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868145283843689083, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
+      propertyPath: _maxEnergy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -14,6 +15,8 @@ public abstract class Weapon : MonoBehaviour
 
     protected float _nextAttackTime;
 
+    public List<IAttackable> DamagedByThisAttack { get; private set; } = new List<IAttackable>();
+
     /// <summary>
     /// Tries to attack which entails doing pre-attack checks such as cooldown. 
     /// If everything is kosher, return true.
@@ -29,16 +32,18 @@ public abstract class Weapon : MonoBehaviour
     }
 
     /// <summary>
-    /// Performs the attack, which may either deal damage directly or spawn a projectile or start an animation.
+    /// Performs the attack, which may either deal damage directly or spawn a projectile or start an animation. Overrides of this method MUST call the base.
     /// </summary>
     /// <param name="target"></param>
     protected virtual void Attack()
     {
         _nextAttackTime = Time.time + AttackCooldownSeconds;
+        DamagedByThisAttack.Clear();
     }
 
     protected virtual void Attack(params IAttackable[] target)
     {
         _nextAttackTime = Time.time + AttackCooldownSeconds;
+        DamagedByThisAttack.Clear();
     }
 }
