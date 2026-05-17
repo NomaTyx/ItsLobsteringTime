@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class EnemyWeapon : Weapon
+public class EnemyClaw : Weapon
 {
-    public float Range {get; private set;} = 3;
     public override bool TryAttack(IAttackable target)
     {
         if(!base.TryAttack(target)) return false;
@@ -12,7 +11,7 @@ public class EnemyWeapon : Weapon
 
     protected override void Attack(params IAttackable[] targets)
     {
+        _animator.Play("attack");
         base.Attack(targets);
-        Debug.Log("attacked player with" + gameObject.name);
     }
 }

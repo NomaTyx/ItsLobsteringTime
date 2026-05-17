@@ -43,7 +43,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f76aab091abe4f48a40d7c3337977f8, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4b132e81e5d135944bd333a837358937, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -105,7 +105,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lobster
+  m_Name: Enemy Lobster
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: AttackTrigger

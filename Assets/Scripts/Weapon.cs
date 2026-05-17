@@ -2,9 +2,15 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public float AttackRange {get; protected set;} = 2.5f;
-    public float AttackCooldownSeconds {get; protected set;} = 2.5f;
+    public float AttackRange => _attackRange;
+    public float AttackCooldownSeconds => _attackCooldownSeconds;
+    public float Damage => _attackDamage;
     public AnimatorOverrideController AnimController;
+
+    [SerializeField] protected float _attackRange = 2.5f;
+    [SerializeField] protected float _attackCooldownSeconds = 2.5f;
+    [SerializeField] private float _attackDamage = 1f;
+    [SerializeField] protected Animator _animator;
 
     protected float _nextAttackTime;
 
@@ -14,15 +20,12 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     public virtual bool TryAttack()
     {
-        if (Time.time < _nextAttackTime) return false;
-        
-        return true;
+        return !(Time.time < _nextAttackTime);
     }
 
     public virtual bool TryAttack(IAttackable target)
     {
-        if (Time.time < _nextAttackTime) return false;
-        return true;
+        return !(Time.time < _nextAttackTime);
     }
 
     /// <summary>

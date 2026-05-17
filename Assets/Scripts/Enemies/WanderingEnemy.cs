@@ -20,12 +20,10 @@ public class WanderingEnemy : EnemyController
 
     private Food _destinationFood = null;
 
-    private SphereCollider _playerDetection;
+    private CapsuleCollider _playerCollider;
 
     protected override void Init()
     {
-        _playerDetection = GetComponent<SphereCollider>();
-        _playerDetection.radius = _playerDetectionRadius;
         _characterMovement = GetComponent<CharacterMovement>();
     }
 
@@ -111,33 +109,47 @@ public class WanderingEnemy : EnemyController
         }
     }
 
-    /// <summary>
-    /// This 
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-    {
-        _target = other.gameObject;
-        ChangeState(CombatState());
-    }
-
     protected override IEnumerator CombatState()
     {
         _characterMovement.Speed = _combatSpeed;
+        _playerCollider = _target.GetComponent<CapsuleCollider>();
+
+        Debug.Log("target is " + _target.transform.parent.name);
         while(true)
         {
-            _characterMovement.MoveTo(_target.transform.position);
-            if(Vector3.Distance(transform.position, _target.transform.position) <= _weapon.AttackRange)
+            if(InRange())
             {
+                _characterMovement.Stop();
                 _weapon.TryAttack(_target.GetComponent<IAttackable>());
+            }
+            else
+            {
+                _characterMovement.MoveTo(_target.transform.position);
             }
             yield return null;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private bool InRange()
     {
-        _target = null;
-        ChangeState(SearchingState());
+        return Vector3.Distance(_weapon.transform.position, _playerCollider.ClosestPointOnBounds(_weapon.transform.position)) <= _weapon.AttackRange;
+    }
+
+    private void Update()
+    {
+        if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= _playerDetectionRadius)
+        {
+            if(_target == null)
+            {
+                _target = PlayerController.Instance.gameObject;
+                Debug.Log(gameObject.name);
+                ChangeState(CombatState());
+            }
+        }
+        else if(_target != null)
+        {
+            _target = null;
+            ChangeState(SearchingState());
+        }
     }
 }

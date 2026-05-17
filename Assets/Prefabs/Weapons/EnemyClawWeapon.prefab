@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541746055366116519}
-  - component: {fileID: 6447273329195057638}
+  - component: {fileID: 6186273071543599756}
   m_Layer: 3
   m_Name: EnemyClawWeapon
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6831523807663317871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6447273329195057638
+--- !u!114 &6186273071543599756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,13 +43,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532612906187213765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7283a47f22ee481cbaad6fab0587599, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f8c0b668b8290e47bf237a919871954, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Claw
-  AnimController: {fileID: 22100000, guid: 08f56bc139d6a4e6e88a5e6972d17239, type: 2}
-  _attackCooldownSeconds: 0.5
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyClaw
+  AnimController: {fileID: 22100000, guid: 6d08d161c6d94474685b509cfafb3313, type: 2}
+  _attackRange: 1
+  _attackCooldownSeconds: 2.5
   _attackDamage: 1
-  _attackEnergyCost: 10
   _animator: {fileID: 0}
 --- !u!1 &3661560886340063480
 GameObject:
@@ -94,10 +94,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -160,10 +160,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

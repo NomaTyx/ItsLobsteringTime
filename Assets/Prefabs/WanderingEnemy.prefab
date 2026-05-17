@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 5777714425483655725}
   - component: {fileID: 5404719504030425435}
   - component: {fileID: 4635477973041207197}
-  - component: {fileID: 2671419062514002493}
-  - component: {fileID: 2318938189608526258}
   - component: {fileID: -3475844899874498789}
   m_Layer: 7
   m_Name: WanderingEnemy
@@ -58,7 +56,7 @@ MonoBehaviour:
   _foodEatingRange: 5
   _secondsBetweenBites: 1
   _chanceToEatFood: 0.25
-  _weapon: {fileID: 2318938189608526258}
+  _weapon: {fileID: 195912570571282887}
   _playerDetectionRadius: 10
 --- !u!136 &2890581600817454733
 CapsuleCollider:
@@ -176,40 +174,6 @@ MonoBehaviour:
   <Rigidbody>k__BackingField: {fileID: 5777714425483655725}
   <NavMeshAgent>k__BackingField: {fileID: 5404719504030425435}
   <CapsuleCollider>k__BackingField: {fileID: 2890581600817454733}
---- !u!135 &2671419062514002493
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981920065873151781}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 503
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2318938189608526258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981920065873151781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8c0b668b8290e47bf237a919871954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
-  AnimController: {fileID: 0}
 --- !u!114 &-3475844899874498789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +187,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxHealth: 1
+--- !u!1 &8730634195678885495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4157203119655082115}
+  - component: {fileID: 8513078098343397551}
+  m_Layer: 9
+  m_Name: PlayerDetectionHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4157203119655082115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730634195678885495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3492882059449054138}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8513078098343397551
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730634195678885495}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1015
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1929192865861681400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +380,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5aa73f776d50cdc459c10dab814a0280, type: 2}
+    - target: {fileID: 4685422148836496875, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6f216c475984aa84b9cad18b48503c3b, type: 2}
     - target: {fileID: 4741442946180565264, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -433,11 +454,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3079594676268626754, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4757888331313946604}
+    - targetCorrespondingSourceObject: {fileID: 3079594676268626754, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4157203119655082115}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
 --- !u!4 &3492882059449054138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3079594676268626754, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+  m_PrefabInstance: {fileID: 1929192865861681400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6611328431093372179 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4685422148836496875, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
   m_PrefabInstance: {fileID: 1929192865861681400}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6296608307042097995
@@ -452,9 +481,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyClawWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 1532612906187213765, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1541746055366116519, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.28518105
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1541746055366116519, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -492,11 +525,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3661560886340063480, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195615628429948582, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186273071543599756, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 6611328431093372179}
+    - target: {fileID: 6447273329195057638, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 6611328431093372179}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+--- !u!114 &195912570571282887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6186273071543599756, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
+  m_PrefabInstance: {fileID: 6296608307042097995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8c0b668b8290e47bf237a919871954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyClaw
 --- !u!4 &4757888331313946604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1541746055366116519, guid: 793b8d7b83fef9246982fb9f152ca65a, type: 3}
