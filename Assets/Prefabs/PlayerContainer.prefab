@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f724917a04d9224bb418820d5a7aa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxEnergy: 1000000
+  _maxEnergy: 100
   _energyDrainPerSecond: 1
   _zeroEnergyDeathTimerSeconds: 10
   _timeBeforeMolt: 20
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement3D
   <Speed>k__BackingField: 5
   <Acceleration>k__BackingField: 30
-  <DashDistance>k__BackingField: 5
+  <DashDistance>k__BackingField: 2
   <DashTime>k__BackingField: 0.1
   <TurnSpeed>k__BackingField: 15
   <OnlyTurnWithInput>k__BackingField: 1
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 264260215257325425}
   - component: {fileID: 7183575625611532224}
   - component: {fileID: 8142267077703153789}
-  - component: {fileID: 7709750730957608761}
+  - component: {fileID: 5543945851064049500}
   - component: {fileID: 1178124270779613934}
   m_Layer: 0
   m_Name: PlayerVCam
@@ -282,8 +282,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2704586205089399159}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16111688, y: 0, z: 0, w: 0.9869353}
-  m_LocalPosition: {x: 0, y: 2.6377366, z: -4.8823686}
+  m_LocalRotation: {x: 0.13231884, y: -0.00000001746769, z: 0.0000000035123926, w: 0.99120724}
+  m_LocalPosition: {x: 0, y: 2.2607675, z: -5.557781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -351,17 +351,17 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  OrbitStyle: 1
-  Radius: 14.61
+  OrbitStyle: 0
+  Radius: 6
   Orbits:
     Top:
-      Radius: 4
-      Height: 5.31
+      Radius: 3
+      Height: 7.5
     Center:
       Radius: 5
-      Height: 3.5
+      Height: 5
     Bottom:
-      Radius: 4
+      Radius: 3
       Height: 0.1
     SplineCurvature: 0
   RecenteringTarget: 3
@@ -376,7 +376,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 17.5
+    Value: 22.135273
     Center: 17.5
     Range: {x: 1.5, y: 45}
     Wrap: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
       Wait: 1
       Time: 2
     Restrictions: 0
---- !u!114 &7709750730957608761
+--- !u!114 &5543945851064049500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,10 +404,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2704586205089399159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  LookAtOffset: {x: 0, y: 1, z: 0}
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 0.75, z: 0}
+  Damping: {x: 0.5, y: 0.5}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!114 &1178124270779613934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +463,7 @@ MonoBehaviour:
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
-      InputValue: 0
+      InputValue: -0
       Driver:
         AccelTime: 0.2
         DecelTime: 0.2
@@ -460,7 +476,7 @@ MonoBehaviour:
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
-      InputValue: 0
+      InputValue: -0
       Driver:
         AccelTime: 0
         DecelTime: 0

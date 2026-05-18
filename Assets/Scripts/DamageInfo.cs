@@ -17,4 +17,9 @@ public class DamageInfo
     {
         Amount = amount;
     }
+
+    public override string ToString()
+    {
+        return $"{Instigator.name} did {Amount} damage to {Target.name}";
+    }
 }

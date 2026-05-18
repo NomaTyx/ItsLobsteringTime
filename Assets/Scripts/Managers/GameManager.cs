@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public static Canvas UICanvas;
 
     private void Awake()
     {
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UICanvas = FindFirstObjectByType<Canvas>();
+
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
         PlayerEnergy.Instance.PlayerDead += GameOver;

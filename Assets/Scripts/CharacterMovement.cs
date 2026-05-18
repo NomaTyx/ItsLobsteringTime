@@ -313,7 +313,7 @@ public class CharacterMovement : MonoBehaviour
         if (Mathf.Abs(collision.relativeVelocity.y) < MinGroundedVelocity) return;
         if (Vector3.Distance(point, transform.position) < landingCollisionMaxDistance)
         {
-            OnGrounded.Invoke(collision.gameObject);
+            OnGrounded?.Invoke(collision.gameObject);
         }
     }
 
