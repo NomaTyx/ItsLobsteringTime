@@ -11,7 +11,6 @@ public class MeleeWeaponCollider : MonoBehaviour
             float damageAmount = _weapon.Damage;
             hitHealth.Damage(new DamageInfo(damageAmount, other.gameObject, transform.parent.gameObject));
             _weapon.DamagedByThisAttack.Add(hitHealth);
-            Debug.Log("damaged " + other.GetType());
         }
     }
 }
