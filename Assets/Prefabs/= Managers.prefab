@@ -239,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6123649162988749033}
   - component: {fileID: 7300168406342832399}
+  - component: {fileID: 7333865641751712210}
   m_Layer: 0
   m_Name: FX Manager
   m_TagString: Untagged
@@ -274,6 +275,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalVFXManager
   _damageTextPrefab: {fileID: 7195906499570867144, guid: c0420616900a7594e9e373e7c9b46caa, type: 3}
+--- !u!114 &7333865641751712210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044967977826147273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb712ebfdc3d4a4890d867028f953a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
 --- !u!1 &8804667247232619409
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,11 +330,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9d4a184b832ad3040b875d7970abf988, type: 3}
+  m_Resource: {fileID: 8300000, guid: 2e8d4bc81cef2864999acd564fa34453, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.22
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

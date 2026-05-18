@@ -1,4 +1,6 @@
+using System.Collections;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GlobalVFXManager : MonoBehaviour
@@ -8,13 +10,13 @@ public class GlobalVFXManager : MonoBehaviour
     private void Start()
     {
         Health.Damaged += SpawnDamageNumber;
-        Health.Damaged += HitStop;
+        Health.Damaged += CameraDamageBehavior;
     }
 
     private void OnDestroy()
     {
         Health.Damaged -= SpawnDamageNumber;
-        Health.Damaged -= HitStop;
+        Health.Damaged -= CameraDamageBehavior;
     }
 
     void SpawnDamageNumber(DamageInfo info)
@@ -28,8 +30,16 @@ public class GlobalVFXManager : MonoBehaviour
 
     }
 
-    void HitStop(DamageInfo info)
+    void CameraDamageBehavior(DamageInfo info)
     {
+        CameraShake.Instance.ShakeOnHit();
+        StartCoroutine(HitStop());
+    }
 
+    private IEnumerator HitStop()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1;
     }
 }
