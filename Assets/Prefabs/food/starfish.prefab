@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6123853167803511019}
+  - component: {fileID: 156793388037062399}
   - component: {fileID: 1178487793520856969}
   - component: {fileID: 3952788046714921617}
-  - component: {fileID: 156793388037062399}
   - component: {fileID: 4202620860597887095}
   m_Layer: 0
   m_Name: starfish
@@ -35,6 +35,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &156793388037062399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698044500651346519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dde6afa0a4738747a4eedc7e6948f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food
+  _energyValue: 10
+  _size: 1
 --- !u!33 &1178487793520856969
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92,20 +106,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &156793388037062399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3698044500651346519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dde6afa0a4738747a4eedc7e6948f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Food
-  _energyValue: 10
-  _size: 1
 --- !u!64 &4202620860597887095
 MeshCollider:
   m_ObjectHideFlags: 0
