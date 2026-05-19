@@ -227,6 +227,7 @@ MonoBehaviour:
   _foodPrefabs:
   - {fileID: 2198205209685914895, guid: fa6252a1e3230b54f8122d5ca4fbef0e, type: 3}
   - {fileID: 156793388037062399, guid: 918c6b91f79b0484fb1a69cdad4adf07, type: 3}
+  - {fileID: 156793388037062399, guid: 918c6b91f79b0484fb1a69cdad4adf07, type: 3}
   _maxFoodInScene: 25
   _spawnSquareBound: 100
 --- !u!1 &8044967977826147273
