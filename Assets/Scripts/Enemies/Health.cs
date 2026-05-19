@@ -12,7 +12,7 @@ public class Health : MonoBehaviour, IAttackable
 
     public event Action Died;
     
-    public void Damage(DamageInfo info)
+    public bool Damage(DamageInfo info)
     {
         _currentHealth -= info.Amount;
         Damaged?.Invoke(info);
@@ -21,5 +21,7 @@ public class Health : MonoBehaviour, IAttackable
         {
             Died?.Invoke();
         }
+
+        return true;
     }
 }

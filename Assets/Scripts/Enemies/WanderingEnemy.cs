@@ -137,6 +137,9 @@ public class WanderingEnemy : EnemyController
 
     private void Update()
     {
+        //this is a band-aid fix. i will graduate to a more complex state machine at some point after gday because i am already having problems.
+        if (PlayerController.Instance == null) return;
+
         if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= _playerDetectionRadius)
         {
             if(_target == null)

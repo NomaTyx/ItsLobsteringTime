@@ -21,8 +21,10 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     [SerializeField] private float _eatRange = 5;
 
-    public event Action PlayerDamaged;
-    public event Action PlayerDead;
+    public static event Action PlayerDamaged;
+    public static event Action PlayerDead;
+
+    private CharacterMovement _movement;
 
     private int _currentSize = 0;
     private float _currentEnergy;
@@ -47,6 +49,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     private void Start()
     {
         _currentEnergy = _maxEnergy;
+        _movement = GetComponent<CharacterMovement>();
     }
 
     public void GainEnergy(float amount)
@@ -105,15 +108,18 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         closestFood.OnEaten();
     }
 
-    public void Damage(DamageInfo info)
+    public bool Damage(DamageInfo info)
     {
+        if (_movement.IsDashing) return false;
         _currentEnergy -= info.Amount;
         PlayerDamaged?.Invoke();
+        return true;
     }
 
     private void Die()
     {
         Debug.Log("u ded lole");
+        PlayerDead?.Invoke();
         Destroy(gameObject);
     }
 

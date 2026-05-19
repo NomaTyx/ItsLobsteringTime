@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,18 +11,23 @@ public abstract class EnemyController : Controller
     protected IEnumerator _currentState;
     protected Health _health;
 
+    private Action _onPlayerDead;
+
     protected void Awake()
     {
         _movement = GetComponent<CharacterMovement>();
         _health = GetComponent<Health>();
 
         _health.Died += Die;
+        _onPlayerDead = () => ChangeState(PlayerDeadState());
+        PlayerEnergy.PlayerDead += _onPlayerDead;
         Init();
     }
 
     private void OnDestroy()
     {
         _health.Died -= Die;
+        if(_onPlayerDead != null) PlayerEnergy.PlayerDead -= _onPlayerDead;
         EnemyManager.Instance.RemoveEnemyFromScene(gameObject);
     }
 
@@ -64,5 +70,15 @@ public abstract class EnemyController : Controller
         _movement.Stop();
         Destroy(gameObject);
         yield return null;
+    }
+
+    protected virtual IEnumerator PlayerDeadState()
+    {
+        while (true) 
+        {
+            _movement.Stop();
+            transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
+            yield return null;
+        }
     }
 }
