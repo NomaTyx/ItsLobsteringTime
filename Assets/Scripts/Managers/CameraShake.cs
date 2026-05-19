@@ -24,7 +24,7 @@ public class CameraShake : MonoBehaviour
         _impulseSource = PlayerEnergy.Instance.gameObject.GetComponent<CinemachineImpulseSource>();
     }
 
-    public void ShakeOnHit(float force = 0.1f)
+    public void ShakeOnHit(float force = 0.2f)
     {
         _impulseSource.GenerateImpulseWithForce(force);
     }

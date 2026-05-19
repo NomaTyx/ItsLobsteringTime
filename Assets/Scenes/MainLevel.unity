@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0.34843528, b: 0.3962264, a: 1}
+  m_FogColor: {r: 0, g: 0.49047267, b: 0.5566038, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.109
+  m_FogDensity: 0.075
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -642,6 +643,23 @@ Skybox:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: d83ae570466655a4db1ec966c7c8a14d, type: 2}
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 2ffedfc8fbb40f64680ba0d67ff26dc7, type: 2}
 --- !u!1001 &392246600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3060,6 +3078,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027229626312650535, guid: 9be4ba3915155d6449fce090d4e96363, type: 3}
   m_PrefabInstance: {fileID: 142026357}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1848327154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1848327156}
+  - component: {fileID: 1848327155}
+  m_Layer: 0
+  m_Name: Decal Projector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1848327155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848327154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: ceba4eea66548ff449148fe499d08642, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 26.0177
+  m_EndAngleFade: 26.0177
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 2.85}
+  m_Size: {x: 250, y: 250, z: 5.7}
+  m_FadeFactor: 0.689
+  version: 1
+  m_DecalLayerMask: 1
+--- !u!4 &1848327156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848327154}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 5.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1862302749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3825,258 +3903,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.ImpulseShape
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].time
-      value: 0.105658755
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].time
-      value: 0.23612656
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].time
-      value: 0.39551246
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].time
-      value: 0.5581883
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].time
-      value: 0.6879594
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].time
-      value: 0.7924485
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].time
-      value: 0.89475584
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].value
-      value: -0.49277154
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].value
-      value: 0.5097394
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].value
-      value: -0.30172217
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].value
-      value: 0.4119599
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].value
-      value: -0.24267836
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].value
-      value: 0.202723
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].value
-      value: -0.1779507
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].value
-      value: 0.10901289
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].value
-      value: 0.014266968
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].inSlope
-      value: 9.488195
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].inSlope
-      value: 0.04119229
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].inSlope
-      value: -1.1015586
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].inSlope
-      value: 1.6561537
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].inSlope
-      value: -0.01512401
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].inSlope
-      value: 0.02587159
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].inSlope
-      value: 1.2057751
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].inSlope
-      value: 0.029213725
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].inSlope
-      value: -0.9002487
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].outSlope
-      value: 9.488195
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].outSlope
-      value: 0.04119229
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].outSlope
-      value: -1.1015586
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].outSlope
-      value: 1.6561537
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].outSlope
-      value: -0.01512401
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].outSlope
-      value: 0.02587159
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].outSlope
-      value: 1.2057751
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].outSlope
-      value: 0.029213725
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].outSlope
-      value: -0.9002487
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].outWeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].outWeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].outWeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].outWeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[0].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[2].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[3].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[4].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[5].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[6].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[7].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137447131755202880, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: ImpulseDefinition.CustomImpulseShape.m_Curve.Array.data[8].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4095,3 +3921,4 @@ SceneRoots:
   - {fileID: 1387032406}
   - {fileID: 1122080242}
   - {fileID: 694490615}
+  - {fileID: 1848327156}

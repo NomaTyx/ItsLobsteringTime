@@ -32,14 +32,15 @@ public class GlobalVFXManager : MonoBehaviour
 
     void CameraDamageBehavior(DamageInfo info)
     {
-        CameraShake.Instance.ShakeOnHit();
+        
         StartCoroutine(HitStop());
     }
 
     private IEnumerator HitStop()
     {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.15f);
+        CameraShake.Instance.ShakeOnHit();
         Time.timeScale = 1;
     }
 }

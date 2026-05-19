@@ -20,15 +20,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UICanvas = FindFirstObjectByType<Canvas>();
+        PlayerEnergy.PlayerDead += GameOver;
 
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
-        PlayerEnergy.Instance.PlayerDead += GameOver;
     }
 
     private void OnDestroy()
     {
-        PlayerEnergy.Instance.PlayerDead -= GameOver;
+        PlayerEnergy.PlayerDead -= GameOver;
     }
 
     private void GameOver()
