@@ -15,7 +15,7 @@ public class WanderingEnemy : EnemyController
 
     [Header("Combat")]
     [SerializeField] private Weapon _weapon;
-    [SerializeField] private float _playerDetectionRadius = 10;
+    [SerializeField] private float _basePlayerDetectionRadius = 10;
     private CharacterMovement _characterMovement;
 
     private Food _destinationFood = null;
@@ -140,7 +140,7 @@ public class WanderingEnemy : EnemyController
         //this is a band-aid fix. i will graduate to a more complex state machine at some point after gday because i am already having problems.
         if (PlayerController.Instance == null) return;
 
-        if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= _playerDetectionRadius)
+        if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= _basePlayerDetectionRadius)
         {
             if(_target == null)
             {

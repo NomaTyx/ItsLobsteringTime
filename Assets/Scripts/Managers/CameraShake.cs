@@ -21,6 +21,7 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
+        //band aid solution. attach impulse source to weapon gameobjects.
         _impulseSource = PlayerEnergy.Instance.gameObject.GetComponent<CinemachineImpulseSource>();
     }
 

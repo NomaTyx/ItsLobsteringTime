@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : Controller
 {
+    public float DashEnergyCost => _dashEnergyCost;
     public static PlayerController Instance;
 
     [SerializeField] private float _dashEnergyCost = 15f;

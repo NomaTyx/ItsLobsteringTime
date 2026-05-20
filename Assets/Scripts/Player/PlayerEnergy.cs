@@ -23,6 +23,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     public static event Action PlayerDamaged;
     public static event Action PlayerDead;
+    public static event Action<bool> PlayerStarving;
 
     private CharacterMovement _movement;
 
@@ -64,7 +65,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     public void TryGrow()
     {
-        if(_currentEnergy > _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
+        if (_currentEnergy > _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
         {
             Grow();
         }
@@ -110,7 +111,11 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     public bool Damage(DamageInfo info)
     {
-        if (_movement.IsDashing) return false;
+        if (_movement.IsDashing)
+        {
+            GainEnergy(PlayerController.Instance.DashEnergyCost);
+            return false;
+        }
         _currentEnergy -= info.Amount;
         PlayerDamaged?.Invoke();
         return true;
@@ -127,36 +132,36 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     {
         _currentEnergy = Math.Max(0, _currentEnergy - _energyDrainPerSecond * Time.fixedDeltaTime);
 
-        if (_currentEnergy == 0) 
-        { 
-            if(!_dyingFromNoEnergy)
+        if (_currentEnergy == 0)
+        {
+            if (!_dyingFromNoEnergy)
             {
                 _dyingFromNoEnergy = true;
+                PlayerStarving?.Invoke(true);
                 _timeToDie = Time.time + _zeroEnergyDeathTimerSeconds;
             }
-            else
+            else if (Time.time >= _timeToDie)
             {
-                if (Time.time >= _timeToDie)
-                {
-                    Die();
-                }
+                Die();
             }
         }
-        else
+        else if (_dyingFromNoEnergy)
         {
-            _dyingFromNoEnergy = false;
-        }
+            {
+                _dyingFromNoEnergy = false;
+                PlayerStarving?.Invoke(false);
+            }
 
             _moltTimerSeconds -= Time.deltaTime;
 
-        if (_moltTimerSeconds <= 0)
-        {
-            TryGrow();
-            _moltTimerSeconds = _timeBeforeMolt;
+            if (_moltTimerSeconds <= 0)
+            {
+                TryGrow();
+                _moltTimerSeconds = _timeBeforeMolt;
+            }
         }
     }
 }
-
 /// <summary>
 /// This enum exists just to add semantic meaning to certain words so i can avoid using magic numbers.
 /// </summary>
