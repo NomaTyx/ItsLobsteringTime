@@ -3,7 +3,17 @@ guid: 8de7c2cf7ca228543a982e9184b4622f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 2100000, guid: 696b461c019014841ab34b4a1c413d78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lobster_mat
+    second: {fileID: 2100000, guid: 43b24b7015a128d4eb46f59ce4917139, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
