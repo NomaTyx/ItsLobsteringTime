@@ -8,6 +8,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public int PlayerSize => _currentSize;
     public float Energy => _currentEnergy;
     public float MaxEnergy => _maxEnergy;
+    public float StarvationTime => _zeroEnergyDeathTimerSeconds;
 
     [Header("Energy")]
     [SerializeField] private int _maxEnergy = 100;
@@ -116,8 +117,17 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
             GainEnergy(PlayerController.Instance.DashEnergyCost);
             return false;
         }
-        _currentEnergy -= info.Amount;
+
         PlayerDamaged?.Invoke();
+
+        if(_dyingFromNoEnergy)
+        {
+            Die();
+        }
+        else
+        {
+            _currentEnergy -= info.Amount;
+        }
         return true;
     }
 
@@ -147,12 +157,9 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         }
         else if (_dyingFromNoEnergy)
         {
-            {
-                _dyingFromNoEnergy = false;
-                PlayerStarving?.Invoke(false);
-            }
-
-            _moltTimerSeconds -= Time.deltaTime;
+            _dyingFromNoEnergy = false;
+            PlayerStarving?.Invoke(false);
+            _moltTimerSeconds -= Time.fixedDeltaTime;
 
             if (_moltTimerSeconds <= 0)
             {

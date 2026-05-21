@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StarvingWarning : MonoBehaviour
 {
+    [SerializeField] private Image _starvingBarImage;
+
     [SerializeField] private float _textOscillationAmplitude = 1;
     [SerializeField] private float _textOscillationFrequency = 2.5f;
     [SerializeField] private float _fadeTimeSeconds = 0.5f;
@@ -12,6 +15,7 @@ public class StarvingWarning : MonoBehaviour
     private bool _fadingIn = false;
     private bool _fadingOut = false;
     private Coroutine _animating;
+    private float _timeStarving;
 
     private void Start()
     {
@@ -46,6 +50,7 @@ public class StarvingWarning : MonoBehaviour
     {
         _fadingIn = true;
         float elapsedTime = 0f;
+        _timeStarving = 0;
 
         while (elapsedTime < _fadeTimeSeconds)
         {
@@ -72,8 +77,11 @@ public class StarvingWarning : MonoBehaviour
 
     void FixedUpdate()
     {
+        //i don't know if this is how i should be doing it.
         if (Mathf.Approximately(_canvasGroup.alpha, 0)) return;
+        _timeStarving += Time.fixedDeltaTime;
         float newY = _rectTransform.anchoredPosition.y + Mathf.Sin(Time.time * _textOscillationFrequency) * _textOscillationAmplitude;
         _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, newY);
+        _starvingBarImage.fillAmount = 1 - _timeStarving / PlayerEnergy.Instance.StarvationTime;
     }
 }
