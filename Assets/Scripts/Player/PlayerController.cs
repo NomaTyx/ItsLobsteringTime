@@ -56,18 +56,23 @@ public class PlayerController : Controller
     }
 
     protected virtual void Update()
-        {
-            if (_movement == null) return;
+    {
+        if (_movement == null) return;
 
-            // find correct right/forward directions based on main camera rotation
-            Vector3 up = Vector3.up;
-            Vector3 right = Camera.main.transform.right;
-            Vector3 forward = Vector3.Cross(right, up);
-            Vector3 moveInput = forward * MoveInput.y + right * MoveInput.x;
+        // find correct right/forward directions based on main camera rotation
+        Vector3 up = Vector3.up;
+        Vector3 right = Camera.main.transform.right;
+        Vector3 forward = Vector3.Cross(right, up);
+        Vector3 moveInput = forward * MoveInput.y + right * MoveInput.x;
 
-            // send player input to character movement
-            _movement.SetMoveInput(moveInput);
-            _movement.SetLookDirection(moveInput);
-            _movement.SetLookDirection(Camera.main.transform.forward);
-        }
+        // send player input to character movement
+        _movement.SetMoveInput(moveInput);
+        _movement.SetLookDirection(moveInput);
+        _movement.SetLookDirection(Camera.main.transform.forward);
+    }
+
+    private void OnPause()
+    {
+        GameManager.Instance.PauseGame();
+    }
 }

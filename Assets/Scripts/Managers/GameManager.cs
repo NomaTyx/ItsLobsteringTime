@@ -5,7 +5,8 @@ using UnityEngine.Rendering.Universal;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public static Canvas UICanvas;
+    public bool Paused => _paused;
+    private bool _paused = false;
 
     private void Awake()
     {
@@ -19,9 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UICanvas = FindFirstObjectByType<Canvas>();
         PlayerEnergy.PlayerDead += GameOver;
-
         FoodManager.Instance.SpawnFoodUpToMax();
         EnemyManager.Instance.SpawnWanderingEnemies();
     }
@@ -29,6 +28,26 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         PlayerEnergy.PlayerDead -= GameOver;
+    }
+
+    public void PauseGame()
+    {
+        if (_paused)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else 
+        { 
+            Time.timeScale = 0.0f;
+        }
+        _paused = !_paused;
+        UI.Instance.SetPauseMenu(_paused);
+    }
+
+    public void SetTimeScale(float value)
+    {
+        if (_paused) return;
+        Time.timeScale = value;
     }
 
     private void GameOver()

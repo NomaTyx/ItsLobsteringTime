@@ -9,6 +9,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public float Energy => _currentEnergy;
     public float MaxEnergy => _maxEnergy;
     public float StarvationTime => _zeroEnergyDeathTimerSeconds;
+    public bool Starving => _starving;
 
     [Header("Energy")]
     [SerializeField] private int _maxEnergy = 100;
@@ -30,8 +31,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     private int _currentSize = 0;
     private float _currentEnergy;
-    private bool _dyingFromNoEnergy = false;
-    private float _timeToDie;
+    private bool _starving = false;
+    private float _deathTime;
 
     private float _moltTimerSeconds;
 
@@ -120,7 +121,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         PlayerDamaged?.Invoke();
 
-        if(_dyingFromNoEnergy)
+        if(_starving)
         {
             Die();
         }
@@ -133,6 +134,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     private void Die()
     {
+        _starving = false;
         Debug.Log("u ded lole");
         PlayerDead?.Invoke();
         Destroy(gameObject);
@@ -144,20 +146,20 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         if (_currentEnergy == 0)
         {
-            if (!_dyingFromNoEnergy)
+            if (!_starving)
             {
-                _dyingFromNoEnergy = true;
+                _starving = true;
                 PlayerStarving?.Invoke(true);
-                _timeToDie = Time.time + _zeroEnergyDeathTimerSeconds;
+                _deathTime = Time.time + _zeroEnergyDeathTimerSeconds;
             }
-            else if (Time.time >= _timeToDie)
+            else if (Time.time >= _deathTime)
             {
                 Die();
             }
         }
-        else if (_dyingFromNoEnergy)
+        else if (_starving)
         {
-            _dyingFromNoEnergy = false;
+            _starving = false;
             PlayerStarving?.Invoke(false);
             _moltTimerSeconds -= Time.fixedDeltaTime;
 

@@ -21,7 +21,7 @@ public class GlobalVFXManager : MonoBehaviour
 
     void SpawnDamageNumber(DamageInfo info)
     {
-        GameObject text = Instantiate(_damageTextPrefab, GameManager.UICanvas.transform);
+        GameObject text = Instantiate(_damageTextPrefab, UI.Instance.transform);
         text.transform.position = Camera.main.WorldToScreenPoint(info.Target.transform.position);
         text.GetComponent<TMP_Text>().SetText(info.Amount.ToString());
 
@@ -38,9 +38,9 @@ public class GlobalVFXManager : MonoBehaviour
 
     private IEnumerator HitStop()
     {
-        Time.timeScale = 0;
+        GameManager.Instance.SetTimeScale(0);
         yield return new WaitForSecondsRealtime(0.15f);
         CameraShake.Instance.ShakeOnHit();
-        Time.timeScale = 1;
+        GameManager.Instance.SetTimeScale(1);
     }
 }

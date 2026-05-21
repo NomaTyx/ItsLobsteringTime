@@ -78,7 +78,7 @@ public class StarvingWarning : MonoBehaviour
     void FixedUpdate()
     {
         //i don't know if this is how i should be doing it.
-        if (Mathf.Approximately(_canvasGroup.alpha, 0)) return;
+        if (!PlayerEnergy.Instance.Starving) return;
         _timeStarving += Time.fixedDeltaTime;
         float newY = _rectTransform.anchoredPosition.y + Mathf.Sin(Time.time * _textOscillationFrequency) * _textOscillationAmplitude;
         _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, newY);
