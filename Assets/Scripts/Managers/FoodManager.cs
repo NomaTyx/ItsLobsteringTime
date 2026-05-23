@@ -7,6 +7,7 @@ public class FoodManager : MonoBehaviour
 {
     [SerializeField] private Food[] _foodPrefabs;
     [SerializeField] private int _maxFoodInScene;
+    [SerializeField] private int _foodRespawnThreshold = 2;
     [SerializeField] private int _spawnSquareBound = 100;
     private int _minX => -_spawnSquareBound / 2;
     private int _maxX => _spawnSquareBound / 2;
@@ -51,6 +52,10 @@ public class FoodManager : MonoBehaviour
     //temporary, i should probably do an event pattern but hey man what are you gonna do
     public bool RemoveFoodFromList(GameObject foodToRemove)
     {
+        if(_foodRespawnThreshold >= FoodInScene.Count)
+        {
+            SpawnFoodUpToMax();
+        }
         return FoodInScene.Remove(foodToRemove);
     }
 }
