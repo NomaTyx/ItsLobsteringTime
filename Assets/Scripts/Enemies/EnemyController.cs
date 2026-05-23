@@ -29,7 +29,6 @@ public abstract class EnemyController : Controller
     {
         _health.Died -= Die;
         if (_onPlayerDead != null) PlayerEnergy.PlayerDead -= _onPlayerDead;
-        EnemyManager.Instance.RemoveEnemyFromScene(gameObject);
     }
 
     protected abstract void Init();
@@ -69,6 +68,8 @@ public abstract class EnemyController : Controller
     protected virtual IEnumerator DeadState()
     {
         _movement.Stop();
+        EnemyManager.Instance.RemoveEnemyFromScene(gameObject);
+        //change this to object pooling later
         Destroy(gameObject);
         yield return null;
     }

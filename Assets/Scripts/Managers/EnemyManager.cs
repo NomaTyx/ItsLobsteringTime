@@ -54,6 +54,7 @@ public class EnemyManager : MonoBehaviour
                     < 95 => playerSize + 2,
                     _ => playerSize - 2
                 };
+                
                 enemyToInstantiate.SetSize(size);
                 EnemiesInScene.Add(Instantiate(enemyToInstantiate.gameObject, spawnPoint, Quaternion.identity));
             }

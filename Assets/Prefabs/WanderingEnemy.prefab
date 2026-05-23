@@ -57,7 +57,7 @@ MonoBehaviour:
   _secondsBetweenBites: 1
   _chanceToEatFood: 0.25
   _weapon: {fileID: 195912570571282887}
-  _playerDetectionRadius: 10
+  _basePlayerDetectionRadius: 10
 --- !u!136 &2890581600817454733
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -133,7 +133,8 @@ MonoBehaviour:
   _wanderingEnemyPrefabs:
   - {fileID: 3497320019145587868, guid: 74d4e2ae1ba27934d87a9087f19b22d9, type: 3}
   _territorialEnemyPrefabs: []
-  _maxWanderingEnemiesInScene: 7
+  _maxWanderingEnemiesInScene: 10
+  _enemyRespawnThreshold: 2
   _maxTerritorialEnemiesInScene: 0
   _spawnSquareBound: 100
 --- !u!1 &5844825314844246180

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,7 +41,8 @@ public class FoodManager : MonoBehaviour
             // SamplePosition returns true if a valid point is found on the NavMesh
             if (NavMesh.SamplePosition(foodInstantiationLocation, out NavMeshHit hit, 10f, NavMesh.AllAreas))
             {
-                FoodInScene.Add(Instantiate(foodToInstantiate, foodInstantiationLocation, Quaternion.identity));
+                GameObject instantiatedFood = Instantiate(foodToInstantiate, hit.position, Quaternion.identity);
+                FoodInScene.Add(instantiatedFood);
             }
         }
 
