@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Enemy spawn numbers")]
     [SerializeField] private int _maxWanderingEnemiesInScene = 5;
+    [SerializeField] private int _enemyRespawnThreshold = 2;
     [SerializeField] private int _maxTerritorialEnemiesInScene = 5;
     [SerializeField] private int _spawnSquareBound = 100;
     private int _spawnPointXMinBound => -_spawnSquareBound / 2;
@@ -34,9 +35,9 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnWanderingEnemies()
     {
-        for(int i = 0; i < _maxWanderingEnemiesInScene; i++)
+        while (EnemiesInScene.Count < _maxWanderingEnemiesInScene)
         {
-            GameObject enemyToInstantiate = _wanderingEnemyPrefabs[Random.Range(0, _wanderingEnemyPrefabs.Length)].gameObject;
+            EnemyController enemyToInstantiate = _wanderingEnemyPrefabs[Random.Range(0, _wanderingEnemyPrefabs.Length)];
 
             Vector3 spawnPoint = new Vector3(x: Random.Range(_spawnPointXMinBound, _spawnPointXMaxBound), 
                                              z: Random.Range(_spawnPointZMinBound, _spawnPointZMaxBound),
@@ -44,27 +45,28 @@ public class EnemyManager : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, 10f, NavMesh.AllAreas))
             {
-                EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
+                int playerSize = PlayerEnergy.Instance.PlayerSize;
+                int size = Random.Range(0, 100) switch
+                {
+                    < 70 => playerSize,
+                    < 80 => playerSize - 1,
+                    < 90 => playerSize + 1,
+                    < 95 => playerSize + 2,
+                    _ => playerSize - 2
+                };
+                enemyToInstantiate.SetSize(size);
+                EnemiesInScene.Add(Instantiate(enemyToInstantiate.gameObject, spawnPoint, Quaternion.identity));
             }
-        }
-    }
-
-    public void SpawnTerritorialEnemies()
-    {
-        for (int i = 0; i < _maxTerritorialEnemiesInScene; i++)
-        {
-            GameObject enemyToInstantiate = _territorialEnemyPrefabs[Random.Range(0, _wanderingEnemyPrefabs.Length)].gameObject;
-
-            Vector3 spawnPoint = new Vector3(x: Random.Range(_spawnPointXMinBound, _spawnPointXMaxBound),
-                                             z: Random.Range(_spawnPointZMinBound, _spawnPointZMaxBound),
-                                             y: 0);
-
-            EnemiesInScene.Add(Instantiate(enemyToInstantiate, spawnPoint, Quaternion.identity));
         }
     }
 
     public void RemoveEnemyFromScene(GameObject enemy)
     {
         EnemiesInScene.Remove(enemy);
+
+        if(EnemiesInScene.Count < _enemyRespawnThreshold)
+        {
+            SpawnWanderingEnemies();
+        }
     }
 }

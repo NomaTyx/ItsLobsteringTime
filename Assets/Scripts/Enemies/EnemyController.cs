@@ -7,11 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyController : Controller
 {
+    public int Size => _size;
     protected CharacterMovement _movement;
     protected IEnumerator _currentState;
     protected Health _health;
-
     private Action _onPlayerDead;
+    protected int _size = 1;
 
     protected void Awake()
     {
@@ -27,7 +28,7 @@ public abstract class EnemyController : Controller
     private void OnDestroy()
     {
         _health.Died -= Die;
-        if(_onPlayerDead != null) PlayerEnergy.PlayerDead -= _onPlayerDead;
+        if (_onPlayerDead != null) PlayerEnergy.PlayerDead -= _onPlayerDead;
         EnemyManager.Instance.RemoveEnemyFromScene(gameObject);
     }
 
@@ -74,11 +75,21 @@ public abstract class EnemyController : Controller
 
     protected virtual IEnumerator PlayerDeadState()
     {
-        while (true) 
+        while (true)
         {
             _movement.Stop();
             transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
             yield return null;
         }
+    }
+
+    public void SetSize(int size)
+    {
+        if (size < 1)
+        {
+            Debug.Log("size was clamped to 1");
+            size = 1;
+        }
+        transform.localScale = Vector3.one * Mathf.Pow(1.15f, size - 1);
     }
 }
