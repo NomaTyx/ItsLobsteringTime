@@ -11,6 +11,11 @@ public class Health : MonoBehaviour, IAttackable
     private float _currentHealth;
 
     public event Action Died;
+
+    private void Start()
+    {
+        _currentHealth = _maxHealth;
+    }
     
     public bool Damage(DamageInfo info)
     {

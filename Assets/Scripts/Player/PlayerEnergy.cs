@@ -20,7 +20,6 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     [SerializeField] private float _timeBeforeMolt = 20f;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
     [SerializeField] private float _playerGrowthPercent = 0.15f;
-
     [SerializeField] private float _eatRange = 5;
 
     public static event Action PlayerDamaged;

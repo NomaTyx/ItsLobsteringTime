@@ -4365,26 +4365,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 110142363438668482, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _maxStepDistance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 110142363438668482, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _framesBetweenSteps
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 110142363438668482, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _overStepMultiplier
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 110142363438668482, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _velocitySmoothness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004114806514007775, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _attackDamage
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 1673552315578492066, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
@@ -4428,10 +4408,6 @@ PrefabInstance:
     - target: {fileID: 5824583568746632427, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868145283843689083, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
-      propertyPath: _timeBeforeMolt
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

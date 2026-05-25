@@ -7,12 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyController : Controller
 {
-    public int Size => _size;
+    public override int Size => _size;
     protected CharacterMovement _movement;
     protected IEnumerator _currentState;
     protected Health _health;
     private Action _onPlayerDead;
-    protected int _size = 1;
+    protected int _size = 0;
 
     protected void Awake()
     {

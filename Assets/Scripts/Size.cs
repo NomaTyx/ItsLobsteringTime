@@ -3,7 +3,8 @@
 /// </summary>
 public enum Size
 {
-    Small = 1,
-    Medium = 2,
-    Large = 3
+    //these values may change who knows!!
+    Small = 0,
+    Medium = 1,
+    Large = 2
 }

@@ -9,8 +9,9 @@ public class MeleeWeaponCollider : MonoBehaviour
         if (other.TryGetComponent(out IAttackable hitHealth) && !_weapon.DamagedByThisAttack.Contains(hitHealth))
         {
             float damageAmount = _weapon.Damage;
-            hitHealth.Damage(new DamageInfo(damageAmount, other.GetComponent<Controller>(), transform.parent.gameObject.GetComponent<Controller>()));
+            hitHealth.Damage(new DamageInfo(damageAmount, other.GetComponentInParent<Controller>(), gameObject.GetComponentInParent<Controller>()));
             _weapon.DamagedByThisAttack.Add(hitHealth);
+            Debug.Log($"{gameObject.name} hit {other.gameObject.name} for {damageAmount} damage");
         }
     }
 }

@@ -8,7 +8,15 @@ public class DamageInfo
 
     public DamageInfo(float amount, Controller target, Controller instigator)
     {
-        Amount = amount * instigator.Size / target.Size;
+        if(instigator.Size > target.Size)
+        {
+            Amount = amount * (instigator.Size - target.Size + 1);
+        }
+        else
+        {
+            Amount = amount / (target.Size - instigator.Size + 1);
+        }
+        Debug.Log($"Base damage: {amount}, Instigator size: {instigator.Size}, Target size: {target.Size}, Final damage: {Amount}");
         Target = target;
         Instigator = instigator;
     }

@@ -14,6 +14,9 @@ public class PlayerController : Controller
     private Vector2 MoveInput;
     private Animator _animator;
 
+    //new keyword because we want the size set in this script but Controller having a definition for Size makes things easier
+    public new int Size => PlayerEnergy.Instance.PlayerSize;
+
     private void Awake()
     {
         if(Instance != null)
