@@ -3,12 +3,12 @@ using UnityEngine;
 public class DamageInfo
 {
     public float Amount { get; private set; }
-    public GameObject Target { get; private set; }
-    public GameObject Instigator { get; private set; }
+    public Controller Target { get; private set; }
+    public Controller Instigator { get; private set; }
 
-    public DamageInfo(float amount, GameObject target, GameObject instigator)
+    public DamageInfo(float amount, Controller target, Controller instigator)
     {
-        Amount = amount;
+        Amount = amount * instigator.Size / target.Size;
         Target = target;
         Instigator = instigator;
     }
