@@ -55,7 +55,7 @@ MonoBehaviour:
   _maxEnergy: 100
   _energyDrainPerSecond: 1
   _zeroEnergyDeathTimerSeconds: 10
-  _timeBeforeMolt: 20
+  _timeBeforeMolt: 100
   _playerGrowthEnergyCosts:
   - 30
   - 40
@@ -980,6 +980,18 @@ PrefabInstance:
       propertyPath: _lobster
       value: 
       objectReference: {fileID: 678995146229534791}
+    - target: {fileID: 6537313344815501375, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+      propertyPath: _framesBetweenSteps
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537313344815501375, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+      propertyPath: _overStepMultiplier
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537313344815501375, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
+      propertyPath: _velocitySmoothness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7109209652359907641, guid: b32b752d0a677ed4bb334720f25ef286, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

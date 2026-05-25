@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Claw
   AnimController: {fileID: 22100000, guid: 08f56bc139d6a4e6e88a5e6972d17239, type: 2}
+  _attackRange: 2.5
   _attackCooldownSeconds: 0.5
-  _attackDamage: 1
-  _attackEnergyCost: 10
+  _attackDamage: 50
   _animator: {fileID: 0}
+  _attackEnergyCost: 10
 --- !u!1 &3661560886340063480
 GameObject:
   m_ObjectHideFlags: 0

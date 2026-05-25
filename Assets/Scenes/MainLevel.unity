@@ -4381,6 +4381,10 @@ PrefabInstance:
       propertyPath: _velocitySmoothness
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1004114806514007775, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
+      propertyPath: _attackDamage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1673552315578492066, guid: 5d02ce1dab1f6cf45a35427c8ac7926f, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
