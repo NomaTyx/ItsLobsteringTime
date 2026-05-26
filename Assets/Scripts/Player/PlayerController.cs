@@ -29,6 +29,7 @@ public class PlayerController : Controller
         _movement = GetComponent<CharacterMovement>();
         _weapon = GetComponentInChildren<Weapon>();
         _animator = GetComponentInChildren<Animator>();
+        
         _animator.runtimeAnimatorController = _weapon.AnimController;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -77,5 +78,13 @@ public class PlayerController : Controller
     private void OnPause()
     {
         GameManager.Instance.PauseGame();
+        if(GameManager.Instance.Paused)
+        {
+            GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+        }
     }
 }
