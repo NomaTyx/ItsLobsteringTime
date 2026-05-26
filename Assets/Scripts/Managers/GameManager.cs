@@ -5,10 +5,11 @@ using UnityEngine.Rendering.Universal;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public event Action<bool> GamePaused;
     public bool Paused => _paused;
     private bool _paused = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if(Instance != null)
         {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         PlayerEnergy.PlayerDead += GameOver;
         FoodManager.Instance.SpawnFoodUpToMax();
