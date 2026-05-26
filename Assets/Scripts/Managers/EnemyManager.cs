@@ -70,4 +70,12 @@ public class EnemyManager : MonoBehaviour
             SpawnWanderingEnemies();
         }
     }
+
+    public void SpawnEnemyAtLocation(Vector3 location)
+    {
+        if (EnemiesInScene.Count >= _maxWanderingEnemiesInScene) return;
+
+        EnemyController enemyToInstantiate = _wanderingEnemyPrefabs[Random.Range(0, _wanderingEnemyPrefabs.Length)];
+        EnemiesInScene.Add(Instantiate(enemyToInstantiate.gameObject, location, Quaternion.identity));
+    }
 }
