@@ -61,7 +61,7 @@ MonoBehaviour:
   - 40
   - 50
   _playerGrowthPercent: 0.15
-  _eatRange: 5
+  _eatRange: 2
 --- !u!114 &471109792326001672
 MonoBehaviour:
   m_ObjectHideFlags: 0
