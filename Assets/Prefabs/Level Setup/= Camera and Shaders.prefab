@@ -69,7 +69,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 50
+  far clip plane: 80
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -225,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 1865751036356825954}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 3.49}
+  m_LocalPosition: {x: 0, y: 7.368, z: 3.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,13 +384,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6222428452182068255}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.70009726, y: 0.0018693621, z: -0.0018328528, w: 0.7140427}
+  m_LocalPosition: {x: 0, y: 2.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2967596971203435219}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 88.87, y: 0.3, z: 0}
 --- !u!114 &4677454159401268144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 26.0177
-  m_EndAngleFade: 26.0177
+  m_EndAngleFade: 47.387566
   m_UVScale: {x: 100, y: 100}
   m_UVBias: {x: 0, y: 0}
   m_RenderingLayerMask:
@@ -415,7 +415,7 @@ MonoBehaviour:
     m_Bits: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 250, y: 250, z: 32.83}
+  m_Size: {x: 250, y: 250, z: 7}
   m_FadeFactor: 0.6
   version: 1
   m_DecalLayerMask: 1
