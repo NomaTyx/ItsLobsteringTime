@@ -38,11 +38,11 @@ public class StarvingWarning : MonoBehaviour
         }
         if (warning)
         {
-            StartCoroutine(StartWarning());
+            _animating = StartCoroutine(StartWarning());
         }
         else
         {
-            StartCoroutine(StopWarning());
+            _animating = StartCoroutine(StopWarning());
         }
     }
 
@@ -51,6 +51,7 @@ public class StarvingWarning : MonoBehaviour
         _fadingIn = true;
         float elapsedTime = 0f;
         _timeStarving = 0;
+        _canvasGroup.alpha = 0;
 
         while (elapsedTime < _fadeTimeSeconds)
         {

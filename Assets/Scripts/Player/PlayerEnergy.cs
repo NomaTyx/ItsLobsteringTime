@@ -131,7 +131,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         if(_starving)
         {
-            Die(DeathCause.Starvation);
+            Die(DeathCause.Enemy);
         }
         else
         {

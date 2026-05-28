@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private MoltWarning _moltWarning;
     [SerializeField] private TextMeshProUGUI _deadText;
+    [SerializeField] private HurtOverlay _hurtOverlay;
+
+    private WaitForSeconds _hurtOverlayWait;
     
     private void Awake()
     {
@@ -25,12 +30,12 @@ public class UI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         //this will be done soon.
         //PlayerEnergy.PlayerStarving += _starveWarning.ToggleWarning;
         PlayerEnergy.PlayerMoltWarning += _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted += _moltWarning.TurnOffWarning;
         PlayerEnergy.PlayerDead += OnPlayerDead;
+        PlayerEnergy.PlayerDamaged += OnPlayerDamaged;
     }
 
     void OnDestroy()
@@ -39,6 +44,7 @@ public class UI : MonoBehaviour
         PlayerEnergy.PlayerMoltWarning -= _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted -= _moltWarning.TurnOffWarning;
         PlayerEnergy.PlayerDead -= OnPlayerDead;
+        PlayerEnergy.PlayerDamaged -= OnPlayerDamaged;
     }
 
     public void SetPauseMenu(bool paused)
@@ -65,5 +71,10 @@ public class UI : MonoBehaviour
                 break;
         }
         _deadText.gameObject.SetActive(true);
+    }
+
+    private void OnPlayerDamaged()
+    {
+        _hurtOverlay.Display();
     }
 }
