@@ -10,6 +10,9 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public float MaxEnergy => _maxEnergy;
     public float StarvationTime => _zeroEnergyDeathTimerSeconds;
     public bool Starving => _starving;
+    public float MoltTimerSeconds => _moltTimerSeconds;
+    public float MoltWarningTime => _moltWarningTime;
+    public float TimeBeforeMolt => _secondsBeforeMolt;
 
     [Header("Energy")]
     [SerializeField] private int _maxEnergy = 100;
@@ -17,7 +20,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     [SerializeField] private float _zeroEnergyDeathTimerSeconds = 10f;
 
     [Header("Growth")]
-    [SerializeField] private float _timeBeforeMolt = 20f;
+    [SerializeField] private float _secondsBeforeMolt = 20f;
+    [SerializeField] private float _moltWarningTime = 5f;
     [SerializeField] private float[] _playerGrowthEnergyCosts;
     [SerializeField] private float _playerGrowthPercent = 0.15f;
     [SerializeField] private float _eatRange = 5;
@@ -25,6 +29,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     public static event Action PlayerDamaged;
     public static event Action PlayerDead;
     public static event Action<bool> PlayerStarving;
+    public static event Action PlayerMoltWarning;
+    public static event Action Molted;
 
     private CharacterMovement _movement;
 
@@ -34,6 +40,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     private float _deathTime;
 
     private float _moltTimerSeconds;
+    private bool _moltWarningGiven = false;
 
     private void Awake()
     {
@@ -45,7 +52,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         Instance = this;
 
-        _moltTimerSeconds = _timeBeforeMolt;
+        _moltTimerSeconds = _secondsBeforeMolt;
     }
 
     private void Start()
@@ -66,7 +73,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     public void TryGrow()
     {
-        if (_currentEnergy > _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
+        if (_currentEnergy >= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
         {
             Grow();
         }
@@ -81,6 +88,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         _currentSize++;
         transform.localScale = Vector3.one * (1 + _playerGrowthPercent * _currentSize);
         _currentEnergy -= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)];
+        _moltWarningGiven = false;
+        Molted?.Invoke();
     }
 
     public virtual void Eat()
@@ -160,13 +169,20 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         {
             _starving = false;
             PlayerStarving?.Invoke(false);
-            _moltTimerSeconds -= Time.fixedDeltaTime;
+        }
 
-            if (_moltTimerSeconds <= 0)
-            {
-                TryGrow();
-                _moltTimerSeconds = _timeBeforeMolt;
-            }
+        _moltTimerSeconds -= Time.fixedDeltaTime;
+
+        if(!_moltWarningGiven && _moltTimerSeconds <= _moltWarningTime)
+        {
+            PlayerMoltWarning?.Invoke();
+            _moltWarningGiven = true;
+        }
+
+        if (_moltTimerSeconds <= 0)
+        {
+            TryGrow();
+            _moltTimerSeconds = _secondsBeforeMolt;
         }
     }
 }

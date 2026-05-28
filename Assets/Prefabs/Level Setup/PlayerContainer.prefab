@@ -55,7 +55,8 @@ MonoBehaviour:
   _maxEnergy: 100
   _energyDrainPerSecond: 1
   _zeroEnergyDeathTimerSeconds: 10
-  _timeBeforeMolt: 30
+  _secondsBeforeMolt: 30
+  _moltWarningTime: 5
   _playerGrowthEnergyCosts:
   - 30
   - 40
