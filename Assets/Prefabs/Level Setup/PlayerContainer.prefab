@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement3D
   <Speed>k__BackingField: 5
   <Acceleration>k__BackingField: 30
-  <DashDistance>k__BackingField: 2
+  <DashDistance>k__BackingField: 3
   <DashTime>k__BackingField: 0.1
   <TurnSpeed>k__BackingField: 15
   <OnlyTurnWithInput>k__BackingField: 1
@@ -719,6 +719,10 @@ PrefabInstance:
       propertyPath: _animator
       value: 
       objectReference: {fileID: 1890254698992656150}
+    - target: {fileID: 6447273329195057638, guid: 2d6f042f87f4f42448b6799a6b228b3d, type: 3}
+      propertyPath: _attackEnergyCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8301493997040160256, guid: 2d6f042f87f4f42448b6799a6b228b3d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 895
