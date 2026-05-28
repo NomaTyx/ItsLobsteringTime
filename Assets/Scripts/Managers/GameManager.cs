@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -53,7 +54,13 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        StartCoroutine(GameOverCoroutine());
+    }
 
+    private IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        SceneHandler.Instance.LoadScene("Title Screen");
     }
 
     private void OnToggleDebug()

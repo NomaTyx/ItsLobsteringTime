@@ -73,7 +73,8 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
     public void TryGrow()
     {
-        if (_currentEnergy >= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)])
+        _currentEnergy -= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)];
+        if (_currentEnergy > 0)
         {
             Grow();
         }
@@ -87,7 +88,6 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     {
         _currentSize++;
         transform.localScale = Vector3.one * (1 + _playerGrowthPercent * _currentSize);
-        _currentEnergy -= _playerGrowthEnergyCosts[Math.Min(_currentSize, _playerGrowthEnergyCosts.Length - 1)];
         _moltWarningGiven = false;
         Molted?.Invoke();
     }

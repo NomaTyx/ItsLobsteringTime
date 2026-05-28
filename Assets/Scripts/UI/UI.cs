@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     [SerializeField] private StarvingWarning _starveWarning;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private MoltWarning _moltWarning;
+    [SerializeField] private GameObject _deadText;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class UI : MonoBehaviour
         //PlayerEnergy.PlayerStarving += _starveWarning.ToggleWarning;
         PlayerEnergy.PlayerMoltWarning += _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted += _moltWarning.TurnOffWarning;
+        PlayerEnergy.PlayerDead += _moltWarning.TurnOffWarning;
+        PlayerEnergy.PlayerDead += SetDeadText;
     }
 
     void OnDestroy()
@@ -34,10 +37,17 @@ public class UI : MonoBehaviour
         //PlayerEnergy.PlayerStarving -= _starveWarning.ToggleWarning;
         PlayerEnergy.PlayerMoltWarning -= _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted -= _moltWarning.TurnOffWarning;
+        PlayerEnergy.PlayerDead -= _moltWarning.TurnOffWarning;
+        PlayerEnergy.PlayerDead += SetDeadText;
     }
 
-    internal void SetPauseMenu(bool paused)
+    public void SetPauseMenu(bool paused)
     {
         _pauseMenu.SetActive(paused);
+    }
+
+    private void SetDeadText()
+    {
+        _deadText.SetActive(true);
     }
 }

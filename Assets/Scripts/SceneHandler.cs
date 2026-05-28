@@ -30,9 +30,9 @@ public class SceneHandler : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("Quitting...");
         Application.Quit();
 #if UNITY_EDITOR
+        Debug.Log("Quitting...");
         UnityEditor.EditorApplication.ExitPlaymode();
 #endif
     }
