@@ -11,7 +11,6 @@ public abstract class EnemyController : Controller
     protected CharacterMovement _movement;
     protected IEnumerator _currentState;
     protected Health _health;
-    private Action<DeathCause> _onPlayerDead;
     protected int _size = 0;
 
     protected void Awake()
@@ -20,15 +19,19 @@ public abstract class EnemyController : Controller
         _health = GetComponent<Health>();
 
         _health.Died += Die;
-        _onPlayerDead = _ => ChangeState(PlayerDeadState());
-        PlayerEnergy.PlayerDead += _onPlayerDead;
+        PlayerEnergy.PlayerDead += OnPlayerDeath;
         Init();
     }
 
     private void OnDestroy()
     {
         _health.Died -= Die;
-        if (_onPlayerDead != null) PlayerEnergy.PlayerDead -= _onPlayerDead;
+        PlayerEnergy.PlayerDead -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath(DeathCause cause)
+    {
+        ChangeState(PlayerDeadState());
     }
 
     protected abstract void Init();
