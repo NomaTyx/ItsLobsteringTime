@@ -58,6 +58,8 @@ MonoBehaviour:
   _secondsBeforeMolt: 30
   _moltWarningTime: 10
   _playerGrowthEnergyCosts:
+  - 15
+  - 20
   - 30
   - 40
   - 50
