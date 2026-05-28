@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class UI : MonoBehaviour
@@ -9,8 +10,8 @@ public class UI : MonoBehaviour
     [SerializeField] private StarvingWarning _starveWarning;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private MoltWarning _moltWarning;
-    [SerializeField] private GameObject _deadText;
-
+    [SerializeField] private TextMeshProUGUI _deadText;
+    
     private void Awake()
     {
         if(Instance != null)
@@ -24,12 +25,12 @@ public class UI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         //this will be done soon.
         //PlayerEnergy.PlayerStarving += _starveWarning.ToggleWarning;
         PlayerEnergy.PlayerMoltWarning += _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted += _moltWarning.TurnOffWarning;
-        PlayerEnergy.PlayerDead += _moltWarning.TurnOffWarning;
-        PlayerEnergy.PlayerDead += SetDeadText;
+        PlayerEnergy.PlayerDead += OnPlayerDead;
     }
 
     void OnDestroy()
@@ -37,8 +38,7 @@ public class UI : MonoBehaviour
         //PlayerEnergy.PlayerStarving -= _starveWarning.ToggleWarning;
         PlayerEnergy.PlayerMoltWarning -= _moltWarning.TurnOnWarning;
         PlayerEnergy.Molted -= _moltWarning.TurnOffWarning;
-        PlayerEnergy.PlayerDead -= _moltWarning.TurnOffWarning;
-        PlayerEnergy.PlayerDead += SetDeadText;
+        PlayerEnergy.PlayerDead -= OnPlayerDead;
     }
 
     public void SetPauseMenu(bool paused)
@@ -46,8 +46,24 @@ public class UI : MonoBehaviour
         _pauseMenu.SetActive(paused);
     }
 
-    private void SetDeadText()
+    private void OnPlayerDead(DeathCause cause)
     {
-        _deadText.SetActive(true);
+        _moltWarning.TurnOffWarning();
+        switch (cause)
+        {
+            case DeathCause.Starvation:
+                _deadText.text = "You starved to death";
+                break;
+            case DeathCause.Enemy:
+                _deadText.text = "You got killed and eaten";
+                break;
+            case DeathCause.Molting:
+                _deadText.text = "You got stuck in your old shell and suffocated";
+                break;
+            default:
+                _deadText.text = "i have no earthly idea how you died";
+                break;
+        }
+        _deadText.gameObject.SetActive(true);
     }
 }

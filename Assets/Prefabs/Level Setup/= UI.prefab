@@ -2227,11 +2227,11 @@ RectTransform:
   m_Children:
   - {fileID: 7179645688786007932}
   - {fileID: 7263624074383751903}
-  - {fileID: 6561419403146697445}
   - {fileID: 7423690082083766917}
   - {fileID: 532959024950597891}
   - {fileID: 195117553304859548}
   - {fileID: 3104140686449204944}
+  - {fileID: 6561419403146697445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
