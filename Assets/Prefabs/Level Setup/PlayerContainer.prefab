@@ -56,7 +56,7 @@ MonoBehaviour:
   _energyDrainPerSecond: 1
   _zeroEnergyDeathTimerSeconds: 10
   _secondsBeforeMolt: 30
-  _moltWarningTime: 5
+  _moltWarningTime: 10
   _playerGrowthEnergyCosts:
   - 30
   - 40
