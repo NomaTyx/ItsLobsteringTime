@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = value;
     }
 
-    private void GameOver()
+    private void GameOver(DeathCause cause)
     {
         StartCoroutine(GameOverCoroutine());
     }

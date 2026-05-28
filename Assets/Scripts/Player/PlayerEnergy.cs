@@ -27,7 +27,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
     [SerializeField] private float _eatRange = 5;
 
     public static event Action PlayerDamaged;
-    public static event Action PlayerDead;
+    public static event Action<DeathCause> PlayerDead;
     public static event Action<bool> PlayerStarving;
     public static event Action PlayerMoltWarning;
     public static event Action Molted;
@@ -80,7 +80,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         }
         else
         {
-            Die();
+            Die(DeathCause.Molting);
         }
     }
 
@@ -131,7 +131,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
 
         if(_starving)
         {
-            Die();
+            Die(DeathCause.Starvation);
         }
         else
         {
@@ -140,11 +140,11 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
         return true;
     }
 
-    private void Die()
+    private void Die(DeathCause cause)
     {
         _starving = false;
         Debug.Log("u ded lole");
-        PlayerDead?.Invoke();
+        PlayerDead?.Invoke(cause);
         Destroy(gameObject);
     }
 
@@ -162,7 +162,7 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
             }
             else if (Time.time >= _deathTime)
             {
-                Die();
+                Die(DeathCause.Starvation);
             }
         }
         else if (_starving)
@@ -184,5 +184,22 @@ public class PlayerEnergy : MonoBehaviour, IAttackable
             TryGrow();
             _moltTimerSeconds = _secondsBeforeMolt;
         }
+    }
+}
+
+public enum DeathCause
+{
+    Starvation,
+    Enemy,
+    Molting
+}
+
+public struct DeathContext
+{
+    public DeathCause Cause { get; }
+
+    public DeathContext(DeathCause cause, GameObject killer = null, float damage = 0)
+    {
+        Cause = cause;
     }
 }
