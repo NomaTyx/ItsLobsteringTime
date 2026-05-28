@@ -36,6 +36,12 @@ public class PlayerController : Controller
         Cursor.visible = false;
     }
 
+    private void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void OnMove(InputValue movementValue)
     {
         MoveInput = movementValue.Get<Vector2>();
@@ -75,7 +81,7 @@ public class PlayerController : Controller
         _movement.SetLookDirection(Camera.main.transform.forward);
     }
 
-    private void OnPause()
+    public void OnPause()
     {
         GameManager.Instance.PauseGame();
         if(GameManager.Instance.Paused)
